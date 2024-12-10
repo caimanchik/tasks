@@ -1,9 +1,13 @@
+using BuildingBlocks.EntityFramework;
 using BuildingBlocks.Keycloak;
 using BuildingBlocks.Logging;
 using BuildingBlocks.Mapster;
 using BuildingBlocks.MassTransit;
 using BuildingBlocks.Swagger;
 using Core.DateTimeLogic;
+using Domain.Tasks.Interfaces;
+using Infrastructure.Tasks.DataStorages;
+using Infrastructure.Tasks.Repositories;
 using Logic.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,11 +18,15 @@ namespace Infrastructure.Tasks;
 
 public static class InfrastructureStartup
 {
+    private const string DbName = "tasks";
+    
     public static WebApplicationBuilder AddInfrastructure(this WebApplicationBuilder builder)
     {
         builder.AddServiceDefaults();
         
         builder.Services.TryAddDateTimeBase();
+        builder.Services.AddPostgresDbContext<TaskDbContext>(builder.Configuration, DbName);
+        builder.Services.RegisterRepository<ITaskRepository, TaskRepository>();
         
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddControllers();

@@ -15,4 +15,10 @@ var postgres = builder.AddPostgres("postgres", userNameDefault, passwordDefault)
 
 var postgresTasks = postgres.AddDatabase("postgresTasks", "tasks");
 
+var apiTasks = builder.AddProject<Projects.Api_Tasks>("apiTasks")
+    .WithReference(rabbitMq)
+    .WithReference(keycloak)
+    .WithReference(postgres)
+    .WithReference(postgresTasks);
+
 builder.Build().Run();

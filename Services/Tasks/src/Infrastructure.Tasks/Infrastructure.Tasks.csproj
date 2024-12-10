@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\Host\ServiceDefaults\ServiceDefaults.csproj" />
+      <ProjectReference Include="..\..\..\..\Libs\BuildingBlocks\BuildingBlocks.csproj" />
+      <ProjectReference Include="..\Logic.Tasks\Logic.Tasks.csproj" />
+    </ItemGroup>
+
+</Project>

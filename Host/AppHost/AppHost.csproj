@@ -16,4 +16,8 @@
         <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="8.2.2" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\Services\Tasks\src\Api.Tasks\Api.Tasks.csproj" />
+    </ItemGroup>
+
 </Project>
