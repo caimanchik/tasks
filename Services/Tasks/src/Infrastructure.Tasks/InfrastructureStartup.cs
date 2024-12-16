@@ -4,7 +4,6 @@ using BuildingBlocks.Logging;
 using BuildingBlocks.Mapster;
 using BuildingBlocks.MassTransit;
 using BuildingBlocks.Swagger;
-using Core.DateTimeLogic;
 using Domain.Tasks.Interfaces;
 using Infrastructure.Tasks.DataStorages;
 using Infrastructure.Tasks.Repositories;
@@ -24,7 +23,6 @@ public static class InfrastructureStartup
     {
         builder.AddServiceDefaults();
         
-        builder.Services.TryAddDateTimeBase();
         builder.Services.AddPostgresDbContext<TaskDbContext>(builder.Configuration, DbName);
         builder.Services.RegisterRepository<ITaskRepository, TaskRepository>();
         

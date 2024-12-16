@@ -34,6 +34,13 @@ public static class Extension
         return services;
     }
 
+    public static IApplicationBuilder UseCustomSerilog(this IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        app.UseSerilogRequestLogging(opts => opts.EnrichDiagnosticContext = LogEnrichHelper.EnrichFromRequest);
+        
+        return app;
+    }
+
     private static void ApplySerilogDefaultConfigureLogger(
         IConfiguration configuration,
         LoggerConfiguration loggerConfiguration,
@@ -41,7 +48,7 @@ public static class Extension
     {
         var logOptions = configuration.GetSection(nameof(LogOptions)).Get<LogOptions>();
 
-        var logLevel = Enum.TryParse<LogEventLevel>(logOptions!.Level, true, out var level)
+        var logLevel = Enum.TryParse<LogEventLevel>(logOptions!.Level, ignoreCase: true, out var level)
             ? level
             : LogEventLevel.Information;
 
@@ -60,11 +67,8 @@ public static class Extension
         {
             Directory.CreateDirectory(Path.Combine(rootPath, "logs"));
 
-            var path = string.IsNullOrWhiteSpace(logOptions.File.Path) ? "logs/.txt" : logOptions.File.Path;
-            if (!Enum.TryParse<RollingInterval>(logOptions.File.Interval, true, out var interval))
-            {
-                interval = RollingInterval.Day;
-            }
+            var path = logOptions.File.Path;
+            var interval = Enum.Parse<RollingInterval>(logOptions.File.Interval, ignoreCase: true);
 
             loggerConfiguration.WriteTo.File(path, rollingInterval: interval, encoding: Encoding.UTF8,
                 outputTemplate: logOptions.LogTemplate);

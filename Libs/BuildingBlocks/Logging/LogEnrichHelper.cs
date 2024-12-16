@@ -8,8 +8,7 @@ public static class LogEnrichHelper
 {
     public static void EnrichFromRequest(
         IDiagnosticContext diagnosticContext,
-        HttpContext httpContext
-    )
+        HttpContext httpContext)
     {
         var request = httpContext.Request;
 
