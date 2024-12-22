@@ -10,4 +10,8 @@
       <ProjectReference Include="..\Infrastructure.Tasks\Infrastructure.Tasks.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Riok.Mapperly" Version="4.1.1" />
+    </ItemGroup>
+
 </Project>
