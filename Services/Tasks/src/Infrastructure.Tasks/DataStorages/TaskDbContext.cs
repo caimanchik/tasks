@@ -12,4 +12,9 @@ public sealed class TaskDbContext : DbContext, IUnitOfWork
     {
         Database.EnsureCreated();
     }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+    }
 }

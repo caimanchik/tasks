@@ -10,4 +10,7 @@
       <ProjectReference Include="..\..\..\..\Libs\Core\Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+        <InternalsVisibleTo Include="Infrastructure.Tasks" />
+    </ItemGroup>
 </Project>
