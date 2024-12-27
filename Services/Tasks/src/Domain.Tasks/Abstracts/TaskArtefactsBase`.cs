@@ -1,12 +1,10 @@
 namespace Domain.Tasks.Abstracts;
 
-public abstract class TaskArtefactsBase;
-
-public abstract class TaskArtefactsBase<TCondition, TResult> : TaskArtefactsBase
+public class TaskArtefactsBase<TCondition, TResult> : TaskArtefactsBase
 {
-    public required TCondition Condition { get; set; }
-    
+    public TCondition Condition { get; init; } = default!;
+
     public TResult? Result { get; set; }
     
-    public string? ExceptionMessage { get; set; }
+    public string? Exception { get; set; }
 }
