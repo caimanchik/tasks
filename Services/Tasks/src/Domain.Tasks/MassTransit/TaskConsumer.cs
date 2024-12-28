@@ -1,6 +1,6 @@
 using Domain.Tasks.Abstracts;
-using Domain.Tasks.Entities.MassTransit;
 using Domain.Tasks.Extensions;
+using Domain.Tasks.MassTransit.Entities;
 using MassTransit;
 
 namespace Domain.Tasks.MassTransit;
