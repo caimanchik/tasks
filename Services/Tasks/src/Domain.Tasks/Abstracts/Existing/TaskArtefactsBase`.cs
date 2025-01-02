@@ -1,4 +1,4 @@
-namespace Domain.Tasks.Abstracts;
+namespace Domain.Tasks.Abstracts.Existing;
 
 public class TaskArtefactsBase<TCondition, TResult> : TaskArtefactsBase
 {

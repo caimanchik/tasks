@@ -15,4 +15,8 @@ internal class TaskDto
     public Guid ChangedBy { get; set; }
     
     public TaskStateDto State { get; set; }
+    
+    public TaskTypeDto TaskType { get; set; }
+    
+    public string Artefacts { get; set; } = null!;
 }

@@ -1,4 +1,4 @@
-using Domain.Tasks.Entities.TaskArtefacts;
+using Domain.Tasks.Entities.Factorial;
 using Domain.Tasks.MassTransit;
 using MassTransit;
 

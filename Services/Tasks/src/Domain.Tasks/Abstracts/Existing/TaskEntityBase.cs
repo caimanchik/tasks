@@ -1,10 +1,10 @@
 using Domain.Tasks.Entities.Enums;
 
-namespace Domain.Tasks.Abstracts;
+namespace Domain.Tasks.Abstracts.Existing;
 
-public abstract class TaskEntityBase<TArtefacts, TCondition, TResult>
-    where TArtefacts : TaskArtefactsBase<TCondition, TResult>
+public abstract class TaskEntityBase
 {
+    public Guid Id { get; set; }
     public required string Name { get; init; }
     
     public string? Description { get; init; }
@@ -17,5 +17,5 @@ public abstract class TaskEntityBase<TArtefacts, TCondition, TResult>
     
     public TaskType TaskType { get; init; }
     
-    public abstract required TArtefacts Artefacts { get; set; }
+    public TaskArtefactsBase Artefacts { get; set; } = null!;
 }

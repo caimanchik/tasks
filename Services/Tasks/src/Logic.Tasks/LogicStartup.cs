@@ -1,3 +1,4 @@
+using Domain.Tasks.Entities.Factorial;
 using Domain.Tasks.Interfaces.Services;
 using Logic.Tasks.Services;
 using Microsoft.AspNetCore.Builder;
@@ -9,6 +10,10 @@ public static class LogicStartup
 {
     public static WebApplicationBuilder AddLogic(this WebApplicationBuilder serviceCollection)
     {
+        serviceCollection.Services
+            .AddScoped<IArtefactsResolver>(_ => new ArtefactsResolver([
+                typeof(FactorialTaskArtefacts)]));
+        
         serviceCollection.Services
             .AddScoped<ITaskService, TaskService>();
         
