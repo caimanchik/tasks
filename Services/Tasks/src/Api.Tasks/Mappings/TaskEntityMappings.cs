@@ -1,7 +1,9 @@
 using Api.Tasks.ApiModels;
 using Api.Tasks.ApiModels.TaskEntities.Create.Factorial;
+using Api.Tasks.ApiModels.TaskEntities.Create.Hypotenuse;
 using Domain.Tasks.Abstracts.Existing;
 using Domain.Tasks.Entities.Factorial;
+using Domain.Tasks.Entities.Hypotenuse;
 using Domain.Tasks.Interfaces.Services;
 using Riok.Mapperly.Abstractions;
 
@@ -23,6 +25,8 @@ internal static partial class TaskEntityMappings
     }
     
     public static partial FactorialTaskCreate ToDomain(this FactorialTaskCreateDto source);
+
+    public static partial HypotenuseTaskCreate ToDomain(this HypotenuseTaskCreateDto source);
         
     [MapperIgnoreTarget(nameof(TaskDto.Artefacts))]
     [MapperIgnoreSource(nameof(TaskEntityBase.Artefacts))]

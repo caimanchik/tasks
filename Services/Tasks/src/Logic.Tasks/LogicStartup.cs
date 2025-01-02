@@ -1,4 +1,5 @@
 using Domain.Tasks.Entities.Factorial;
+using Domain.Tasks.Entities.Hypotenuse;
 using Domain.Tasks.Interfaces.Services;
 using Logic.Tasks.Services;
 using Microsoft.AspNetCore.Builder;
@@ -12,7 +13,9 @@ public static class LogicStartup
     {
         serviceCollection.Services
             .AddScoped<IArtefactsResolver>(_ => new ArtefactsResolver([
-                typeof(FactorialTaskArtefacts)]));
+                typeof(FactorialTaskArtefacts),
+                typeof(HypotenuseTaskArtefacts),
+            ]));
         
         serviceCollection.Services
             .AddScoped<ITaskService, TaskService>();
