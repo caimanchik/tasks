@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Api.Tasks.ApiModels;
+using Api.Tasks.ApiModels.TaskEntities.Create.Factorial;
 
 namespace Api.Tasks;
 
@@ -9,4 +10,5 @@ namespace Api.Tasks;
 
 [JsonSerializable(typeof(TaskDto))]
 [JsonSerializable(typeof(IEnumerable<TaskDto>))]
+[JsonSerializable(typeof(FactorialTaskCreateDto))]
 internal partial class ApiJsonContext : JsonSerializerContext;
