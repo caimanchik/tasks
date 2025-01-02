@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace Core.Extensions;
 
-internal static class HttpContextExtensions
+public static class HttpContextExtensions
 {
-    internal static Guid? TryGetUserId(this HttpContext context)
+    public static Guid? TryGetUserId(this HttpContext context)
     {
         var userIdString = context.User.Identity?.IsAuthenticated == false 
             ? null

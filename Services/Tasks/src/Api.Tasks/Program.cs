@@ -1,11 +1,13 @@
+using Api.Tasks;
 using Infrastructure.Tasks;
 using Logic.Tasks;
 
-var builder = WebApplication.CreateBuilder(args);
-builder.AddInfrastructure();
-builder.AddLogic();
+var builder = WebApplication.CreateBuilder(args) 
+    .AddInfrastructure() 
+    .AddLogic() 
+    .AddApi();
 
 var app = builder.Build();
-app.UseInfrastructure();
+app.UseApi();
 
-app.Run();
+await app.RunAsync();
