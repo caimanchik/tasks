@@ -2,4 +2,4 @@
 
 namespace Domain.Tasks.Entities.CountPrimes;
 
-public class CountPrimesTaskArtefacts : TaskArtefactsBase<int, long> { }
+public class CountPrimesTaskArtefacts : TaskArtefactsBase<int, int> { }

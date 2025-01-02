@@ -5,11 +5,11 @@ using MassTransit;
 namespace CountPrimes.Tasks.Consumers;
 
 public class CountPrimesConsumer(IPublishEndpoint publishEndpoint)
-    : CustomConsumer<CountPrimesTaskArtefacts, int, long>(publishEndpoint)
+    : CustomConsumer<CountPrimesTaskArtefacts, int, int>(publishEndpoint)
 {
-    protected override Task<long> DoWork(int number)
+    protected override Task<int> DoWork(int number)
     {
-        long count = 0;
+        int count = 0;
         for (int i = 2; i <= number; i++)
         {
             if (IsPrime(i))
