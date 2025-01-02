@@ -1,4 +1,5 @@
 using Domain.Tasks.Abstracts;
+using Domain.Tasks.Abstracts.Existing;
 using Domain.Tasks.Extensions;
 using Domain.Tasks.MassTransit.Entities;
 using MassTransit;

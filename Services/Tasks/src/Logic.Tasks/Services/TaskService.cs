@@ -1,16 +1,22 @@
-using Domain.Tasks.Entities;
+using Domain.Tasks.Abstracts.Create;
+using Domain.Tasks.Abstracts.Existing;
 using Domain.Tasks.Interfaces.Services;
 
 namespace Logic.Tasks.Services;
 
 public class TaskService : ITaskService
 {
-    public Task<TaskEntity?> GetTaskByIdAsync(Guid userId, Guid taskId)
+    public Task<TaskEntityBase?> GetTaskByIdAsync(Guid userId, Guid taskId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<TaskEntity>> GetAllTasksAsync(Guid userId)
+    public Task<IEnumerable<TaskEntityBase>> GetAllTasksAsync(Guid userId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<TaskEntityBase> CreateTaskAsync(Guid userId, TaskCreateBase taskToCreate)
     {
         throw new NotImplementedException();
     }
