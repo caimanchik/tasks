@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Domain.Tasks\Domain.Tasks.csproj" />
+      <ProjectReference Include="..\Host\ServiceDefaults\ServiceDefaults.csproj" />
+      <ProjectReference Include="..\Libs\BuildingBlocks\BuildingBlocks.csproj" />
+      <ProjectReference Include="..\Services\Tasks\src\Domain.Tasks\Domain.Tasks.csproj" />
+    </ItemGroup>
+
+</Project>
