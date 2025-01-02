@@ -21,4 +21,7 @@ var apiTasks = builder.AddProject<Projects.Api_Tasks>("apiTasks")
     .WithReference(postgres)
     .WithReference(postgresTasks);
 
+var factorialTask = builder.AddProject<Projects.Factorial_Tasks>("factorialTask")
+    .WithReference(rabbitMq);
+
 builder.Build().Run();

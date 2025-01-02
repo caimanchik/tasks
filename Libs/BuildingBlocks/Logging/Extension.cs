@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
 using Serilog.Exceptions;
@@ -22,13 +23,14 @@ public static class Extension
         return builder;
     }
 
-    public static IServiceCollection AddCustomSerilog(this IServiceCollection services, IWebHostEnvironment env)
+    public static IServiceCollection AddCustomSerilog(this IServiceCollection services, IHostEnvironment env)
     {
         services.AddSerilog((serviceProvider, loggerConfiguration) =>
         {
             var configuration = serviceProvider.GetService<IConfiguration>();
             ArgumentNullException.ThrowIfNull(configuration);
-            ApplySerilogDefaultConfigureLogger(configuration, loggerConfiguration, env.WebRootPath);
+            ApplySerilogDefaultConfigureLogger(configuration, loggerConfiguration, 
+                env is IWebHostEnvironment webHostEnvironment ? webHostEnvironment.WebRootPath : env.ContentRootPath);
         });
 
         return services;
