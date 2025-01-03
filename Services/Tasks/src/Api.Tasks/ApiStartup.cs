@@ -16,7 +16,7 @@ internal static class ApiStartup
         builder.Services.AddEndpointsApiExplorer();
         
         builder.Services.AddCustomSerilog(builder.Environment);
-        builder.Services.AddCustomSwagger();
+        builder.Services.AddCustomSwagger(builder.Configuration);
         
         builder.Services.AddCustomAuthentication(builder.Configuration);
         builder.Services.AddCustomAuthorization();
