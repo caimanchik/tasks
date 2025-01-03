@@ -2,6 +2,7 @@ using Api.Tasks.ApiModels;
 using Api.Tasks.ApiModels.TaskEntities.Create.CountPrimes;
 using Api.Tasks.ApiModels.TaskEntities.Create.Factorial;
 using Api.Tasks.ApiModels.TaskEntities.Create.Hypotenuse;
+using Api.Tasks.ApiModels.TaskEntities.Create.SumOfDigits;
 using Api.Tasks.Mappings;
 using Core.Extensions;
 using Domain.Tasks.Interfaces.Services;
@@ -43,6 +44,12 @@ public static class TaskEndpoints
             .RequireAuthorization();
 
 
+        
+        group
+            .MapPost("/sumOfDigits", CreateSumOfDigitsTask)
+            .WithSummary("Создать задачу подсчета суммы цифр числа")
+            .RequireAuthorization();
+        
         return builder;
     }
 
@@ -110,6 +117,22 @@ public static class TaskEndpoints
 
     private static async Task<Results<Ok<TaskDto>, UnauthorizedHttpResult>> CreateFactorialTask(
         [FromBody] FactorialTaskCreateDto task,
+        HttpContext context,
+        ITaskService taskService,
+        IArtefactsResolver artefactsResolver)
+    {
+        var userId = context.TryGetUserId();
+        if (userId is null)
+            return TypedResults.Unauthorized();
+
+        var domainTask = task.ToDomain();
+        var created = await taskService.CreateTaskAsync(userId.Value, domainTask);
+
+        return TypedResults.Ok(created.ToContract(artefactsResolver));
+    }
+    
+    private static async Task<Results<Ok<TaskDto>, UnauthorizedHttpResult>> CreateSumOfDigitsTask(
+        [FromBody] SumOfDigitsTaskCreateDto task,
         HttpContext context,
         ITaskService taskService,
         IArtefactsResolver artefactsResolver)
