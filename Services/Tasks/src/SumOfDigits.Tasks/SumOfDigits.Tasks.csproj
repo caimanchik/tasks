@@ -8,7 +8,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\..\Host\ServiceDefaults\ServiceDefaults.csproj" />
-      <ProjectReference Include="..\..\..\..\Libs\BuildingBlocks\BuildingBlocks.csproj" />
       <ProjectReference Include="..\Domain.Tasks\Domain.Tasks.csproj" />
     </ItemGroup>
 
