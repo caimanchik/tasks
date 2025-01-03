@@ -13,7 +13,7 @@ using Riok.Mapperly.Abstractions;
 
 namespace Api.Tasks.Mappings;
 
-[Mapper]
+[Mapper(EnumMappingStrategy = EnumMappingStrategy.ByName, EnumMappingIgnoreCase = true)]
 internal static partial class TaskEntityMappings
 {
     public static IEnumerable<TaskDto> ToContract(this IEnumerable<TaskEntityBase> entities, IArtefactsResolver resolver)

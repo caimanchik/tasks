@@ -3,7 +3,7 @@ using Riok.Mapperly.Abstractions;
 
 namespace Logic.Tasks.Mappings;
 
-[Mapper]
+[Mapper(EnumMappingStrategy = EnumMappingStrategy.ByName, EnumMappingIgnoreCase = true)]
 internal static partial class ConditionMappings
 {
     public static partial HypotenuseTaskCondition ToDomain(this HypotenuseArtefactsCreate source);

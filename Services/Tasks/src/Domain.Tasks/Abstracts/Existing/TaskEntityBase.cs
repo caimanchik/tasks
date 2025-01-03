@@ -13,11 +13,11 @@ public abstract class TaskEntityBase
     
     public DateTime? DateOfUpdate { get; set; }
     
+    public Guid ChangedBy { get; set; }
+    
+    public TaskState State { get; set; }
+    
     public Guid OwnerId { get; init; }
-    
-    public Guid ChangedBy { get; private set; }
-    
-    public TaskState State { get; private set; }
     
     public TaskType TaskType { get; init; }
     

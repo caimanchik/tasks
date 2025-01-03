@@ -7,7 +7,7 @@ using Riok.Mapperly.Abstractions;
 
 namespace Logic.Tasks.Mappings;
 
-[Mapper]
+[Mapper(EnumMappingStrategy = EnumMappingStrategy.ByName, EnumMappingIgnoreCase = true)]
 public static partial class TaskEntityMappings
 {
     [MapperIgnoreTarget(nameof(FactorialTaskEntity.Artefacts))]

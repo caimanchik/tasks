@@ -13,7 +13,7 @@ var keycloak = builder.AddKeycloak("keycloak", port: 10001, userNameDefault, pas
 var postgres = builder.AddPostgres("postgres", userNameDefault, passwordDefault)
     .WithDataVolume();
 
-var postgresTasks = postgres.AddDatabase("postgresTasks", "tasks");
+var postgresTasks = postgres.AddDatabase("tasks", "tasks");
 
 var apiTasks = builder.AddProject<Projects.Api_Tasks>("apiTasks")
     .WithReference(rabbitMq)

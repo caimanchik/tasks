@@ -41,6 +41,8 @@ public class TaskService(
         {
             HypotenuseTaskCreate hypotenuseTaskCreate => new HypotenuseTaskArtefacts { Condition = hypotenuseTaskCreate.Artefacts.ToDomain() },
             FactorialTaskCreate factorialTaskCreate => new FactorialTaskArtefacts { Condition = factorialTaskCreate.Artefacts.Number },
+            CountPrimesTaskCreate countPrimesTaskCreate => new CountPrimesTaskArtefacts { Condition = countPrimesTaskCreate.Artefacts.Number },
+            SumOfDigitsTaskCreate sumOfDigitsTaskCreate => new SumOfDigitsTaskArtefacts { Condition = sumOfDigitsTaskCreate.Artefacts.Number },
             _ => null,
         };
         
@@ -49,9 +51,10 @@ public class TaskService(
 
         var task = new TaskEntity(taskToCreate.Name, taskToCreate.Description, userId, DateTime.UtcNow,
             resolver.Serialize(artefacts), taskToCreate.TaskType);
-        await taskRepository.AddAsync(task, ct);
+        var result = await taskRepository.AddAsync(task, ct);
+        await taskRepository.UnitOfWork.SaveChangesAsync(ct);
         
-        return GetContractTask(task);
+        return GetContractTask(result);
     }
     
     private async Task<TaskEntity?> GetTaskAsync(Guid taskId, CancellationToken ct) => 

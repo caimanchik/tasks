@@ -4,5 +4,5 @@ namespace Domain.Tasks.Entities.SumOfDigits;
 
 public class SumOfDigitsTaskEntity : TaskEntityBase<SumOfDigitsTaskArtefacts, int, int>
 {
-    public override required SumOfDigitsTaskArtefacts Artefacts { get; set; }
+    public override SumOfDigitsTaskArtefacts Artefacts { get; set; } = null!;
 }
