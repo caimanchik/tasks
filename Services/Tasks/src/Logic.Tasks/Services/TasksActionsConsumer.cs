@@ -3,6 +3,7 @@ using Domain.Tasks.Entities.CountPrimes;
 using Domain.Tasks.Entities.Enums;
 using Domain.Tasks.Entities.Factorial;
 using Domain.Tasks.Entities.Hypotenuse;
+using Domain.Tasks.Entities.Palindrome;
 using Domain.Tasks.Entities.SumOfDigits;
 using Domain.Tasks.Interfaces.Services;
 using Domain.Tasks.MassTransit.Entities;
@@ -16,7 +17,8 @@ public class TasksActionsConsumer(
     ITaskService taskService,
     ILogger<TasksActionsConsumer> logger) : 
     IConsumer<TaskProcessed<FactorialTaskArtefacts>>, IConsumer<TaskProcessed<HypotenuseTaskArtefacts>>,
-    IConsumer<TaskProcessed<CountPrimesTaskArtefacts>>, IConsumer<TaskProcessed<SumOfDigitsTaskArtefacts>>
+    IConsumer<TaskProcessed<CountPrimesTaskArtefacts>>, IConsumer<TaskProcessed<SumOfDigitsTaskArtefacts>>,
+    IConsumer<TaskProcessed<PalindromeTaskArtefacts>>
 {
     public async Task Consume(ConsumeContext<TaskProcessing> context)
     {
@@ -42,6 +44,9 @@ public class TasksActionsConsumer(
     public async Task Consume(ConsumeContext<TaskProcessed<SumOfDigitsTaskArtefacts>> context) => 
         await Consume<SumOfDigitsTaskArtefacts, int, int>(context.Message);
 
+    public async Task Consume(ConsumeContext<TaskProcessed<PalindromeTaskArtefacts>> context) =>
+        await Consume<PalindromeTaskArtefacts, string, bool>(context.Message);
+    
     private async Task Consume<TArtefacts, TCondition, TResult>(MassTransitTaskBase<TArtefacts> task)
         where TArtefacts : TaskArtefactsBase<TCondition, TResult>
     {

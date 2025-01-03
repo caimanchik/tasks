@@ -33,4 +33,7 @@ var countPrimesTask = builder.AddProject<Projects.CountPrimes_Tasks>("countPrime
 var sumOfDigitsTask = builder.AddProject<Projects.SumOfDigits_Tasks>("sumOfDigitsTask")
     .WithReference(rabbitMq);
 
+var palindromeTask = builder.AddProject<Projects.Palindrome_Tasks>("palindromeTask")
+    .WithReference(rabbitMq);
+
 builder.Build().Run();
