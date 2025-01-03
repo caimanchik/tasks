@@ -1,4 +1,5 @@
 using BuildingBlocks.Keycloak.Constants;
+using BuildingBlocks.Keycloak.Options;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -10,9 +11,11 @@ public static class Extension
 {
     public static IServiceCollection AddCustomAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
+        var config = configuration.GetSection(nameof(KeycloakOptions)).Get<KeycloakOptions>()!;
+        
         services
             .AddAuthentication()
-            .AddKeycloakJwtBearer("keycloak", "keycloak-auth", options =>
+            .AddKeycloakJwtBearer("keycloak", config.Realm, options =>
             {
                 options.RequireHttpsMetadata = false;
                 options.Audience = "account";
