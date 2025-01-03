@@ -22,12 +22,6 @@ public static class LogicStartup
             ]));
         
         serviceCollection.Services
-            .AddScoped<ITasksResolver>(_ => new TasksResolver([
-                typeof(FactorialTaskCreate),
-                typeof(HypotenuseTaskCreate),
-            ]));
-        
-        serviceCollection.Services
             .AddScoped<ITaskService, TaskService>();
         
         return serviceCollection;

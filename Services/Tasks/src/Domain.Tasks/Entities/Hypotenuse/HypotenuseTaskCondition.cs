@@ -1,6 +1,6 @@
-﻿namespace Domain.Tasks.Entities.Hypotenuse;
+namespace Domain.Tasks.Entities.Hypotenuse;
 
-public interface IHypotenuseTask
+public class HypotenuseTaskCondition
 {
     public double FirstLeg { get; set; }
     public double SecondLeg { get; set; }

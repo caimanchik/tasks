@@ -5,6 +5,7 @@ using Api.Tasks.ApiModels.TaskEntities.Create.Hypotenuse;
 using Api.Tasks.ApiModels.TaskEntities.Create.SumOfDigits;
 using Api.Tasks.Mappings;
 using Core.Extensions;
+using Domain.Tasks.Abstracts.Create;
 using Domain.Tasks.Interfaces.Services;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -58,9 +59,7 @@ public static class TaskEndpoints
         IArtefactsResolver artefactsResolver,
         CancellationToken cancellationToken)
     {
-        var userId = context.TryGetUserId();
-        if (userId is null)
-            return TypedResults.Unauthorized();
+        var userId = context.TryGetUserId()!;
         
         var task = await taskService.GetTaskByIdAsync(userId.Value, taskId, cancellationToken);
         if (task is null)
@@ -75,78 +74,76 @@ public static class TaskEndpoints
         IArtefactsResolver artefactsResolver,
         CancellationToken cancellationToken)
     {
-        var userId = context.TryGetUserId();
-        if (userId is null)
-            return TypedResults.Unauthorized();
+        var userId = context.TryGetUserId()!;
 
         var tasks = await taskService.GetAllTasksAsync(userId.Value, cancellationToken);
         return TypedResults.Ok(tasks.ToContract(artefactsResolver));
     }
 
-    private static async Task<Results<Ok<TaskDto>, UnauthorizedHttpResult>> CreateCountPrimesTask(
+    private static async Task<Results<Ok<TaskDto>, ProblemHttpResult>> CreateCountPrimesTask(
         [FromBody] CountPrimesTaskCreateDto task,
         HttpContext context,
         ITaskService taskService,
         IArtefactsResolver artefactsResolver,
-        CancellationToken cancellationToken)
+        CancellationToken ct)
     {
-        var userId = context.TryGetUserId();
-        if (userId is null)
-            return TypedResults.Unauthorized();
-
+        var userId = context.TryGetUserId()!;
         var domainTask = task.ToDomain();
-        var created = await taskService.CreateTaskAsync(userId.Value, domainTask, cancellationToken);
-
-        return TypedResults.Ok(created.ToContract(artefactsResolver));
+        
+        return await TryCreateTask(taskService, userId.Value, domainTask, artefactsResolver, ct);
     }
 
-    private static async Task<Results<Ok<TaskDto>, UnauthorizedHttpResult>> CreateHypotenuseTask(
+    private static async Task<Results<Ok<TaskDto>, ProblemHttpResult>> CreateHypotenuseTask(
         [FromBody] HypotenuseTaskCreateDto task,
         HttpContext context,
         ITaskService taskService,
         IArtefactsResolver artefactsResolver,
-        CancellationToken cancellationToken)
+        CancellationToken ct)
     {
-        var userId = context.TryGetUserId();
-        if (userId is null)
-            return TypedResults.Unauthorized();
-
+        var userId = context.TryGetUserId()!;
         var domainTask = task.ToDomain();
-        var created = await taskService.CreateTaskAsync(userId.Value, domainTask, cancellationToken);
-
-        return TypedResults.Ok(created.ToContract(artefactsResolver));
+        
+        return await TryCreateTask(taskService, userId.Value, domainTask, artefactsResolver, ct);
     }
 
-    private static async Task<Results<Ok<TaskDto>, UnauthorizedHttpResult>> CreateFactorialTask(
+    private static async Task<Results<Ok<TaskDto>, ProblemHttpResult>> CreateFactorialTask(
         [FromBody] FactorialTaskCreateDto task,
         HttpContext context,
         ITaskService taskService,
-        IArtefactsResolver artefactsResolver)
+        IArtefactsResolver artefactsResolver,
+        CancellationToken ct)
     {
-        var userId = context.TryGetUserId();
-        if (userId is null)
-            return TypedResults.Unauthorized();
-
+        var userId = context.TryGetUserId()!;
         var domainTask = task.ToDomain();
-        var created = await taskService.CreateTaskAsync(userId.Value, domainTask);
-
-        return TypedResults.Ok(created.ToContract(artefactsResolver));
+        
+        return await TryCreateTask(taskService, userId.Value, domainTask, artefactsResolver, ct);
     }
     
-    private static async Task<Results<Ok<TaskDto>, UnauthorizedHttpResult>> CreateSumOfDigitsTask(
+    private static async Task<Results<Ok<TaskDto>, ProblemHttpResult>> CreateSumOfDigitsTask(
         [FromBody] SumOfDigitsTaskCreateDto task,
         HttpContext context,
         ITaskService taskService,
         IArtefactsResolver artefactsResolver,
-        CancellationToken cancellationToken)
+        CancellationToken ct)
     {
-        var userId = context.TryGetUserId();
-        if (userId is null)
-            return TypedResults.Unauthorized();
-
+        var userId = context.TryGetUserId()!;
         var domainTask = task.ToDomain();
-        var created = await taskService.CreateTaskAsync(userId.Value, domainTask, cancellationToken);
+        
+        return await TryCreateTask(taskService, userId.Value, domainTask, artefactsResolver, ct);
+    }
 
-        return TypedResults.Ok(created.ToContract(artefactsResolver));
+    private static async Task<Results<Ok<TaskDto>, ProblemHttpResult>> TryCreateTask<TArtefacts>(
+        ITaskService taskService,
+        Guid userId,
+        TaskCreateBase<TArtefacts> domainTask,
+        IArtefactsResolver artefactsResolver,
+        CancellationToken ct)
+        where TArtefacts : ArtefactsCreateBase
+    {
+        var created = await taskService.CreateTaskAsync(userId, domainTask, ct);
+
+        return created is null
+            ? TypedResults.Problem("Unable to create task")
+            : TypedResults.Ok(created.ToContract(artefactsResolver));
     }
 }

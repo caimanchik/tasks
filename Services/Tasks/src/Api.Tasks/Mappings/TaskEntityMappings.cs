@@ -1,5 +1,4 @@
 using Api.Tasks.ApiModels;
-using Api.Tasks.ApiModels.TaskEntities.Create.Base;
 using Api.Tasks.ApiModels.TaskEntities.Create.CountPrimes;
 using Api.Tasks.ApiModels.TaskEntities.Create.Factorial;
 using Api.Tasks.ApiModels.TaskEntities.Create.Hypotenuse;

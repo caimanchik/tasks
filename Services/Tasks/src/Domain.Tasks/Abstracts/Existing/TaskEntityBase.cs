@@ -9,6 +9,10 @@ public abstract class TaskEntityBase
     
     public string? Description { get; init; }
     
+    public DateTime DateOfCreate { get; set; }
+    
+    public DateTime? DateOfUpdate { get; set; }
+    
     public Guid OwnerId { get; init; }
     
     public Guid ChangedBy { get; private set; }

@@ -1,7 +1,9 @@
 using System.Text.Json;
 using Core.BaseModels.Repositories.Interfaces;
 using Core.BaseModels.Repositories.Models;
+using Domain.Tasks.Abstracts.Existing;
 using Domain.Tasks.Entities.Enums;
+using Domain.Tasks.Interfaces.Services;
 
 namespace Domain.Tasks.Entities;
 
@@ -48,4 +50,8 @@ public partial class TaskEntity
         ChangedBy = changedBy;
         return true;
     }
+
+    public T GetArtefacts<T>(IArtefactsResolver resolver)
+        where T : TaskArtefactsBase
+        => resolver.Deserialize<T>(Artefacts);
 }

@@ -5,7 +5,7 @@ namespace Domain.Tasks.Interfaces.Services;
 
 public interface ITaskService
 {
-    Task<TaskEntityBase?> GetTaskByIdAsync(Guid userId, Guid taskId, CancellationToken cancellationToken);
-    Task<IEnumerable<TaskEntityBase>> GetAllTasksAsync(Guid userId, CancellationToken cancellationToken);
-    Task<TaskEntityBase?> CreateTaskAsync(Guid userId, TaskCreateBase taskToCreate, CancellationToken cancellationToken);
+    Task<TaskEntityBase?> GetTaskByIdAsync(Guid userId, Guid taskId, CancellationToken ct);
+    Task<IEnumerable<TaskEntityBase>> GetAllTasksAsync(Guid userId, CancellationToken ct);
+    Task<TaskEntityBase?> CreateTaskAsync(Guid userId, TaskCreateBase taskToCreate, CancellationToken ct);
 }
