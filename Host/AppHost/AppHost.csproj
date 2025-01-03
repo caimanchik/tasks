@@ -19,6 +19,7 @@
     <ItemGroup>
       <ProjectReference Include="..\..\Factorial.Tasks\Factorial.Tasks.csproj" />
       <ProjectReference Include="..\..\Hypotenuse.Tasks\Hypotenuse.Tasks.csproj" />
+      <ProjectReference Include="..\..\CountPrimes.Tasks\CountPrimes.Tasks.csproj" />
       <ProjectReference Include="..\..\Services\Tasks\src\Api.Tasks\Api.Tasks.csproj" />
     </ItemGroup>
 

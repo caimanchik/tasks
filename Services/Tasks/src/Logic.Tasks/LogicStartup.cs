@@ -1,3 +1,4 @@
+using Domain.Tasks.Entities.CountPrimes;
 using Domain.Tasks.Entities.Factorial;
 using Domain.Tasks.Entities.Hypotenuse;
 using Domain.Tasks.Interfaces.Services;
@@ -15,6 +16,7 @@ public static class LogicStartup
             .AddScoped<IArtefactsResolver>(_ => new ArtefactsResolver([
                 typeof(FactorialTaskArtefacts),
                 typeof(HypotenuseTaskArtefacts),
+                typeof(CountPrimesTaskArtefacts)
             ]));
         
         serviceCollection.Services
