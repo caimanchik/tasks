@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
 
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
@@ -10,10 +10,6 @@
       <ProjectReference Include="..\..\..\..\Host\ServiceDefaults\ServiceDefaults.csproj" />
       <ProjectReference Include="..\..\..\..\Libs\BuildingBlocks\BuildingBlocks.csproj" />
       <ProjectReference Include="..\Domain.Tasks\Domain.Tasks.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Include="MassTransit.Abstractions" Version="8.2.2" />
     </ItemGroup>
 
 </Project>

@@ -16,8 +16,7 @@ public class SumOfDigitsConsumers(IPublishEndpoint publishEndpoint)
             sum += condition % 10;
             condition /= 10;
         }
-        
-        return Task.FromResult(sum);
 
+        return Task.FromResult(sum);
     }
 }
