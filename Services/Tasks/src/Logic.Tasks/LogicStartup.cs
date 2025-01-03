@@ -16,11 +16,8 @@ public static class LogicStartup
             .AddScoped<IArtefactsResolver>(_ => new ArtefactsResolver([
                 typeof(FactorialTaskArtefacts),
                 typeof(HypotenuseTaskArtefacts),
+                typeof(CountPrimesTaskArtefacts)])
             ]));
-        
-        serviceCollection.Services
-            .AddScoped<IArtefactsResolver>(_ => new ArtefactsResolver([
-                typeof(CountPrimesTaskArtefacts)]));
         
         serviceCollection.Services
             .AddScoped<ITaskService, TaskService>();
