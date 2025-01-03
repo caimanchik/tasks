@@ -30,4 +30,7 @@ var hypotenuseTask = builder.AddProject<Projects.Hypotenuse_Tasks>("hypotenuseTa
 var countPrimesTask = builder.AddProject<Projects.CountPrimes_Tasks>("countPrimesTask")
     .WithReference(rabbitMq);
 
+var sumOfDigitsTask = builder.AddProject<Projects.SumOfDigits_Tasks>("sumOfDigitsTask")
+    .WithReference(rabbitMq);
+
 builder.Build().Run();

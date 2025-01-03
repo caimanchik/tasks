@@ -3,10 +3,12 @@ using Api.Tasks.ApiModels.TaskEntities.Create.Base;
 using Api.Tasks.ApiModels.TaskEntities.Create.CountPrimes;
 using Api.Tasks.ApiModels.TaskEntities.Create.Factorial;
 using Api.Tasks.ApiModels.TaskEntities.Create.Hypotenuse;
+using Api.Tasks.ApiModels.TaskEntities.Create.SumOfDigits;
 using Domain.Tasks.Abstracts.Existing;
 using Domain.Tasks.Entities.CountPrimes;
 using Domain.Tasks.Entities.Factorial;
 using Domain.Tasks.Entities.Hypotenuse;
+using Domain.Tasks.Entities.SumOfDigits;
 using Domain.Tasks.Interfaces.Services;
 using Riok.Mapperly.Abstractions;
 
@@ -32,6 +34,8 @@ internal static partial class TaskEntityMappings
     public static partial CountPrimesTaskCreate ToDomain(this CountPrimesTaskCreateDto source);
 
     public static partial HypotenuseTaskCreate ToDomain(this HypotenuseTaskCreateDto source);
+    
+    public static partial SumOfDigitsTaskCreate ToDomain(this SumOfDigitsTaskCreateDto source);
         
     [MapperIgnoreTarget(nameof(TaskDto.Artefacts))]
     [MapperIgnoreSource(nameof(TaskEntityBase.Artefacts))]
