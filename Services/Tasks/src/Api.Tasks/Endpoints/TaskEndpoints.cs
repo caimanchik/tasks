@@ -42,8 +42,6 @@ public static class TaskEndpoints
             .MapPost("/countPrimes", CreateCountPrimesTask)
             .WithSummary("Создать задачу подсчета простых чисел")
             .RequireAuthorization();
-
-
         
         group
             .MapPost("/sumOfDigits", CreateSumOfDigitsTask)
@@ -57,13 +55,14 @@ public static class TaskEndpoints
         Guid taskId,
         HttpContext context,
         ITaskService taskService,
-        IArtefactsResolver artefactsResolver)
+        IArtefactsResolver artefactsResolver,
+        CancellationToken cancellationToken)
     {
         var userId = context.TryGetUserId();
         if (userId is null)
             return TypedResults.Unauthorized();
-
-        var task = await taskService.GetTaskByIdAsync(userId.Value, taskId);
+        
+        var task = await taskService.GetTaskByIdAsync(userId.Value, taskId, cancellationToken);
         if (task is null)
             return TypedResults.NotFound();
 
@@ -73,13 +72,14 @@ public static class TaskEndpoints
     private static async Task<Results<Ok<IEnumerable<TaskDto>>, UnauthorizedHttpResult>> GetTasks(
         HttpContext context,
         ITaskService taskService,
-        IArtefactsResolver artefactsResolver)
+        IArtefactsResolver artefactsResolver,
+        CancellationToken cancellationToken)
     {
         var userId = context.TryGetUserId();
         if (userId is null)
             return TypedResults.Unauthorized();
 
-        var tasks = await taskService.GetAllTasksAsync(userId.Value);
+        var tasks = await taskService.GetAllTasksAsync(userId.Value, cancellationToken);
         return TypedResults.Ok(tasks.ToContract(artefactsResolver));
     }
 
@@ -87,14 +87,15 @@ public static class TaskEndpoints
         [FromBody] CountPrimesTaskCreateDto task,
         HttpContext context,
         ITaskService taskService,
-        IArtefactsResolver artefactsResolver)
+        IArtefactsResolver artefactsResolver,
+        CancellationToken cancellationToken)
     {
         var userId = context.TryGetUserId();
         if (userId is null)
             return TypedResults.Unauthorized();
 
         var domainTask = task.ToDomain();
-        var created = await taskService.CreateTaskAsync(userId.Value, domainTask);
+        var created = await taskService.CreateTaskAsync(userId.Value, domainTask, cancellationToken);
 
         return TypedResults.Ok(created.ToContract(artefactsResolver));
     }
@@ -103,14 +104,15 @@ public static class TaskEndpoints
         [FromBody] HypotenuseTaskCreateDto task,
         HttpContext context,
         ITaskService taskService,
-        IArtefactsResolver artefactsResolver)
+        IArtefactsResolver artefactsResolver,
+        CancellationToken cancellationToken)
     {
         var userId = context.TryGetUserId();
         if (userId is null)
             return TypedResults.Unauthorized();
 
         var domainTask = task.ToDomain();
-        var created = await taskService.CreateTaskAsync(userId.Value, domainTask);
+        var created = await taskService.CreateTaskAsync(userId.Value, domainTask, cancellationToken);
 
         return TypedResults.Ok(created.ToContract(artefactsResolver));
     }
@@ -135,14 +137,15 @@ public static class TaskEndpoints
         [FromBody] SumOfDigitsTaskCreateDto task,
         HttpContext context,
         ITaskService taskService,
-        IArtefactsResolver artefactsResolver)
+        IArtefactsResolver artefactsResolver,
+        CancellationToken cancellationToken)
     {
         var userId = context.TryGetUserId();
         if (userId is null)
             return TypedResults.Unauthorized();
 
         var domainTask = task.ToDomain();
-        var created = await taskService.CreateTaskAsync(userId.Value, domainTask);
+        var created = await taskService.CreateTaskAsync(userId.Value, domainTask, cancellationToken);
 
         return TypedResults.Ok(created.ToContract(artefactsResolver));
     }
