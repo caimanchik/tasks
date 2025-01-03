@@ -2,6 +2,7 @@ using Api.Tasks.ApiModels;
 using Api.Tasks.ApiModels.TaskEntities.Create.CountPrimes;
 using Api.Tasks.ApiModels.TaskEntities.Create.Factorial;
 using Api.Tasks.ApiModels.TaskEntities.Create.Hypotenuse;
+using Api.Tasks.ApiModels.TaskEntities.Create.Palindrome;
 using Api.Tasks.ApiModels.TaskEntities.Create.SumOfDigits;
 using Api.Tasks.Mappings;
 using Core.Extensions;
@@ -48,6 +49,11 @@ public static class TaskEndpoints
         group
             .MapPost("/sumOfDigits", CreateSumOfDigitsTask)
             .WithSummary("Создать задачу подсчета суммы цифр числа")
+            .RequireAuthorization();
+        
+        group
+            .MapPost("/palindrome", CreatePalindromeTask)
+            .WithSummary("Создать задачу, является ли текст палиндромом")
             .RequireAuthorization();
         
         return builder;
@@ -133,6 +139,22 @@ public static class TaskEndpoints
     
     private static async Task<Results<Ok<TaskDto>, UnauthorizedHttpResult>> CreateSumOfDigitsTask(
         [FromBody] SumOfDigitsTaskCreateDto task,
+        HttpContext context,
+        ITaskService taskService,
+        IArtefactsResolver artefactsResolver)
+    {
+        var userId = context.TryGetUserId();
+        if (userId is null)
+            return TypedResults.Unauthorized();
+
+        var domainTask = task.ToDomain();
+        var created = await taskService.CreateTaskAsync(userId.Value, domainTask);
+
+        return TypedResults.Ok(created.ToContract(artefactsResolver));
+    }
+    
+    private static async Task<Results<Ok<TaskDto>, UnauthorizedHttpResult>> CreatePalindromeTask(
+        [FromBody] PalindromeTaskCreateDto task,
         HttpContext context,
         ITaskService taskService,
         IArtefactsResolver artefactsResolver)
