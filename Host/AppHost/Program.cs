@@ -24,4 +24,7 @@ var apiTasks = builder.AddProject<Projects.Api_Tasks>("apiTasks")
 var factorialTask = builder.AddProject<Projects.Factorial_Tasks>("factorialTask")
     .WithReference(rabbitMq);
 
+var hypotenuseTask = builder.AddProject<Projects.Hypotenuse_Tasks>("hypotenuseTask")
+    .WithReference(rabbitMq);
+
 builder.Build().Run();
