@@ -6,4 +6,6 @@ public enum TaskTypeDto
     Hypotenuse = 1,
     CountPrimes = 2,
     SumOfDigits = 3,
+    Fibonacci = 5,
+    GCD = 6,
 }

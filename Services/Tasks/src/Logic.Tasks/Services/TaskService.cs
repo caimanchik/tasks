@@ -4,6 +4,8 @@ using Domain.Tasks.Entities;
 using Domain.Tasks.Entities.CountPrimes;
 using Domain.Tasks.Entities.Enums;
 using Domain.Tasks.Entities.Factorial;
+using Domain.Tasks.Entities.Fibonacci;
+using Domain.Tasks.Entities.GCD;
 using Domain.Tasks.Entities.Hypotenuse;
 using Domain.Tasks.Entities.SumOfDigits;
 using Domain.Tasks.Interfaces.Repositories;
@@ -45,6 +47,8 @@ public class TaskService(
             FactorialTaskCreate factorialTaskCreate => new FactorialTaskArtefacts { Condition = factorialTaskCreate.Artefacts.Number },
             CountPrimesTaskCreate countPrimesTaskCreate => new CountPrimesTaskArtefacts { Condition = countPrimesTaskCreate.Artefacts.Number },
             SumOfDigitsTaskCreate sumOfDigitsTaskCreate => new SumOfDigitsTaskArtefacts { Condition = sumOfDigitsTaskCreate.Artefacts.Number },
+            FibonacciTaskCreate fibonacciTaskCreate => new FibonacciTaskArtefacts { Condition = fibonacciTaskCreate.Artefacts.Number },
+            GCDTaskCreate gcdTaskCreate => new GCDTaskArtefacts() { Condition = gcdTaskCreate.Artefacts.ToDomain() },
             _ => null,
         };
         
@@ -101,6 +105,8 @@ public class TaskService(
             TaskType.Hypotenuse => (taskEntity.ToHypotenuse(), artefacts ?? taskEntity.GetArtefacts<HypotenuseTaskArtefacts>(resolver)),
             TaskType.CountPrimes => (taskEntity.ToCountPrime(), artefacts ?? taskEntity.GetArtefacts<CountPrimesTaskArtefacts>(resolver)),
             TaskType.SumOfDigits => (taskEntity.ToSumOfDigits(), artefacts ?? taskEntity.GetArtefacts<SumOfDigitsTaskArtefacts>(resolver)),
+            TaskType.Fibonacci => (taskEntity.ToFibonacci(), artefacts ?? taskEntity.GetArtefacts<FibonacciTaskArtefacts>(resolver)),
+            TaskType.GCD => (taskEntity.ToGCD(), artefacts ?? taskEntity.GetArtefacts<GCDTaskArtefacts>(resolver)),
             _ => null,
         };
 
@@ -132,6 +138,16 @@ public class TaskService(
             case SumOfDigitsTaskArtefacts sumOfDigitsTaskArtefacts:
             {
                 await PublishTask(sumOfDigitsTaskArtefacts, createdEntity, ct);
+                break;
+            }
+            case FibonacciTaskArtefacts fibonacciTaskArtefacts:
+            {
+                await PublishTask(fibonacciTaskArtefacts, createdEntity, ct);
+                break;
+            }
+            case GCDTaskArtefacts gcDTaskArtefacts:
+            {
+                await PublishTask(gcDTaskArtefacts, createdEntity, ct);
                 break;
             }
         }

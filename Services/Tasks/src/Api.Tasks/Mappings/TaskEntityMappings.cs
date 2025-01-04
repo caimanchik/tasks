@@ -1,11 +1,15 @@
 using Api.Tasks.ApiModels;
 using Api.Tasks.ApiModels.TaskEntities.Create.CountPrimes;
 using Api.Tasks.ApiModels.TaskEntities.Create.Factorial;
+using Api.Tasks.ApiModels.TaskEntities.Create.Fibonacci;
+using Api.Tasks.ApiModels.TaskEntities.Create.GCD;
 using Api.Tasks.ApiModels.TaskEntities.Create.Hypotenuse;
 using Api.Tasks.ApiModels.TaskEntities.Create.SumOfDigits;
 using Domain.Tasks.Abstracts.Existing;
 using Domain.Tasks.Entities.CountPrimes;
 using Domain.Tasks.Entities.Factorial;
+using Domain.Tasks.Entities.Fibonacci;
+using Domain.Tasks.Entities.GCD;
 using Domain.Tasks.Entities.Hypotenuse;
 using Domain.Tasks.Entities.SumOfDigits;
 using Domain.Tasks.Interfaces.Services;
@@ -35,6 +39,10 @@ internal static partial class TaskEntityMappings
     public static partial HypotenuseTaskCreate ToDomain(this HypotenuseTaskCreateDto source);
     
     public static partial SumOfDigitsTaskCreate ToDomain(this SumOfDigitsTaskCreateDto source);
+
+    public static partial FibonacciTaskCreate ToDomain(this FibonacciTaskCreateDto source);
+
+    public static partial GCDTaskCreate ToDomain(this GCDTaskCreateDto source);
         
     [MapperIgnoreTarget(nameof(TaskDto.Artefacts))]
     [MapperIgnoreSource(nameof(TaskEntityBase.Artefacts))]

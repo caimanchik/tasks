@@ -33,4 +33,10 @@ var countPrimesTask = builder.AddProject<Projects.CountPrimes_Tasks>("countPrime
 var sumOfDigitsTask = builder.AddProject<Projects.SumOfDigits_Tasks>("sumOfDigitsTask")
     .WithReference(rabbitMq);
 
+var fibonacciTask = builder.AddProject<Projects.Fibonacci_Tasks>("fibonacciTask")
+    .WithReference(rabbitMq);
+
+var gcdTask = builder.AddProject<Projects.GCD_Tasks>("gcdTask")
+    .WithReference(rabbitMq);
+
 builder.Build().Run();

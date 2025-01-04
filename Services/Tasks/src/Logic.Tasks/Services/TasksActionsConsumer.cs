@@ -2,6 +2,8 @@ using Domain.Tasks.Abstracts.Existing;
 using Domain.Tasks.Entities.CountPrimes;
 using Domain.Tasks.Entities.Enums;
 using Domain.Tasks.Entities.Factorial;
+using Domain.Tasks.Entities.Fibonacci;
+using Domain.Tasks.Entities.GCD;
 using Domain.Tasks.Entities.Hypotenuse;
 using Domain.Tasks.Entities.SumOfDigits;
 using Domain.Tasks.Interfaces.Services;
@@ -16,7 +18,8 @@ public class TasksActionsConsumer(
     ITaskService taskService,
     ILogger<TasksActionsConsumer> logger) : 
     IConsumer<TaskProcessed<FactorialTaskArtefacts>>, IConsumer<TaskProcessed<HypotenuseTaskArtefacts>>,
-    IConsumer<TaskProcessed<CountPrimesTaskArtefacts>>, IConsumer<TaskProcessed<SumOfDigitsTaskArtefacts>>
+    IConsumer<TaskProcessed<CountPrimesTaskArtefacts>>, IConsumer<TaskProcessed<SumOfDigitsTaskArtefacts>>,
+    IConsumer<TaskProcessed<FibonacciTaskArtefacts>>, IConsumer<TaskProcessed<GCDTaskArtefacts>>
 {
     public async Task Consume(ConsumeContext<TaskProcessing> context)
     {
@@ -41,6 +44,12 @@ public class TasksActionsConsumer(
 
     public async Task Consume(ConsumeContext<TaskProcessed<SumOfDigitsTaskArtefacts>> context) => 
         await Consume<SumOfDigitsTaskArtefacts, int, int>(context.Message);
+    
+    public async Task Consume(ConsumeContext<TaskProcessed<FibonacciTaskArtefacts>> context) => 
+        await Consume<FibonacciTaskArtefacts, int, long>(context.Message);
+    
+    public async Task Consume(ConsumeContext<TaskProcessed<GCDTaskArtefacts>> context) => 
+        await Consume<GCDTaskArtefacts, GCDTaskCondition, int>(context.Message);
 
     private async Task Consume<TArtefacts, TCondition, TResult>(MassTransitTaskBase<TArtefacts> task)
         where TArtefacts : TaskArtefactsBase<TCondition, TResult>
