@@ -10,6 +10,10 @@ internal class TaskDto
     
     public string? Description { get; set; }
     
+    public DateTime DateOfCreate { get; set; }
+    
+    public DateTime? DateOfUpdate { get; set; }
+    
     public Guid OwnerId { get; set; }
     
     public Guid ChangedBy { get; set; }

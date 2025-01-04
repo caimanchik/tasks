@@ -1,15 +1,16 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
+using Domain.Tasks.Abstracts.Existing;
 
-namespace Core.Utils;
+namespace Domain.Tasks.Utils;
 
-public class JsonTypeInfoResolver<T>(IEnumerable<Type> derivedTypes) : DefaultJsonTypeInfoResolver
+public class ArtefactsJsonTypeInfoResolver(IEnumerable<Type> derivedTypes) : DefaultJsonTypeInfoResolver
 {
     public override JsonTypeInfo GetTypeInfo(Type type, JsonSerializerOptions options)
     {
         var typeInfo = base.GetTypeInfo(type, options);
-        if (typeInfo.Type is T)
+        if (typeInfo.Type == typeof(TaskArtefactsBase))
         {
             typeInfo.PolymorphismOptions = new JsonPolymorphismOptions
             {

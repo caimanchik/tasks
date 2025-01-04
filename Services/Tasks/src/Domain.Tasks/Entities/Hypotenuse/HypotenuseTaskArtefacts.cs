@@ -2,4 +2,4 @@
 
 namespace Domain.Tasks.Entities.Hypotenuse;
 
-public class HypotenuseTaskArtefacts: TaskArtefactsBase<IHypotenuseTask, double>;
+public class HypotenuseTaskArtefacts: TaskArtefactsBase<HypotenuseTaskCondition, double>;

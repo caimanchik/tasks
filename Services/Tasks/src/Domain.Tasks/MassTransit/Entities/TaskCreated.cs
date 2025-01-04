@@ -1,6 +1,6 @@
-using Domain.Tasks.Abstracts;
 using Domain.Tasks.Abstracts.Existing;
 using Domain.Tasks.Entities.Enums;
+using Domain.Tasks.MassTransit.Entities.Abstracts;
 
 namespace Domain.Tasks.MassTransit.Entities;
 
@@ -14,6 +14,8 @@ public partial class TaskCreated<TArtefacts>
 
 public partial class TaskCreated<TArtefacts> 
 {
+    public TaskProcessing ToProcessing() => new TaskProcessing { Key = Key };
+    
     public TaskProcessed<TArtefacts> ToProcessed(TArtefacts artefacts) => new()
         {
             Key = Key,

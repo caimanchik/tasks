@@ -5,9 +5,9 @@ using MassTransit;
 namespace Hypotenuse.Tasks.Consumers;
 
 public class HypotenuseConsumers(IPublishEndpoint publishEndpoint)
-    : CustomConsumer<HypotenuseTaskArtefacts, IHypotenuseTask, double>(publishEndpoint)
+    : CustomConsumer<HypotenuseTaskArtefacts, HypotenuseTaskCondition, double>(publishEndpoint)
 {
-    protected override Task<double> DoWork(IHypotenuseTask condition)
+    protected override Task<double> DoWork(HypotenuseTaskCondition condition)
     {
         var firstLeg = condition.FirstLeg;
         var secondLeg = condition.SecondLeg;

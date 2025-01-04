@@ -1,7 +1,9 @@
 using System.Text.Json;
 using Core.BaseModels.Repositories.Interfaces;
 using Core.BaseModels.Repositories.Models;
+using Domain.Tasks.Abstracts.Existing;
 using Domain.Tasks.Entities.Enums;
+using Domain.Tasks.Interfaces.Services;
 
 namespace Domain.Tasks.Entities;
 
@@ -37,15 +39,29 @@ public partial class TaskEntity
 
     public bool CanUpdate() => TaskState.Updatable.HasFlag(State);
 
-    public bool TrySetState(TaskState stateForUpdate, Guid changedBy, out TaskState? newState)
+    public bool TrySetState(TaskState stateForUpdate, Guid changedBy)
     {
-        newState = null;
-        if (CanUpdate())
+        if (!CanUpdate())
             return false;
 
         State = stateForUpdate;
-        newState = State;
         ChangedBy = changedBy;
         return true;
     }
+
+    public bool TrySetArtefacts<T>(T artefacts, Guid changedBy, TaskState stateForUpdate, IArtefactsResolver resolver)
+        where T : TaskArtefactsBase
+    {
+        if (!CanUpdate())
+            return false;
+        
+        State = stateForUpdate;
+        ChangedBy = changedBy;
+        Artefacts = resolver.Serialize(artefacts);
+        return true;
+    }
+
+    public T GetArtefacts<T>(IArtefactsResolver resolver)
+        where T : TaskArtefactsBase
+        => resolver.Deserialize<T>(Artefacts);
 }

@@ -2,7 +2,7 @@ using Core.BaseModels.MassTransit.Abstracts;
 using Domain.Tasks.Abstracts.Existing;
 using Domain.Tasks.Entities.Enums;
 
-namespace Domain.Tasks.Abstracts;
+namespace Domain.Tasks.MassTransit.Entities.Abstracts;
 
 public abstract class MassTransitTaskBase<TArtefacts>
     : MasstransitEntityBase<Guid>

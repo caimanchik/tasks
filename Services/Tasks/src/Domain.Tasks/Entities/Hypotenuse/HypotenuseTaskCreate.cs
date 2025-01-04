@@ -4,5 +4,5 @@ namespace Domain.Tasks.Entities.Hypotenuse;
 
 public class HypotenuseTaskCreate : TaskCreateBase<HypotenuseArtefactsCreate>
 {
-    public override HypotenuseArtefactsCreate Artefacts { get; set; }
+    public override required HypotenuseArtefactsCreate Artefacts { get; set; }
 }

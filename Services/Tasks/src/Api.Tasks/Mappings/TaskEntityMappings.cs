@@ -1,5 +1,4 @@
 using Api.Tasks.ApiModels;
-using Api.Tasks.ApiModels.TaskEntities.Create.Base;
 using Api.Tasks.ApiModels.TaskEntities.Create.CountPrimes;
 using Api.Tasks.ApiModels.TaskEntities.Create.Factorial;
 using Api.Tasks.ApiModels.TaskEntities.Create.Hypotenuse;
@@ -14,7 +13,7 @@ using Riok.Mapperly.Abstractions;
 
 namespace Api.Tasks.Mappings;
 
-[Mapper]
+[Mapper(EnumMappingStrategy = EnumMappingStrategy.ByName, EnumMappingIgnoreCase = true)]
 internal static partial class TaskEntityMappings
 {
     public static IEnumerable<TaskDto> ToContract(this IEnumerable<TaskEntityBase> entities, IArtefactsResolver resolver)

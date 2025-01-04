@@ -4,5 +4,5 @@ namespace Domain.Tasks.Entities.Factorial;
 
 public class FactorialTaskEntity : TaskEntityBase<FactorialTaskArtefacts, int, long>
 {
-    public override required FactorialTaskArtefacts Artefacts { get; set; }
+    public override FactorialTaskArtefacts Artefacts { get; set; } = null!;
 }
