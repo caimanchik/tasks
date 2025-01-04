@@ -4,6 +4,7 @@ using Domain.Tasks.Entities.Hypotenuse;
 using Domain.Tasks.Entities.SumOfDigits;
 using Domain.Tasks.Interfaces.Services;
 using Logic.Tasks.Services;
+using MassTransit.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,6 +24,8 @@ public static class LogicStartup
         
         serviceCollection.Services
             .AddScoped<ITaskService, TaskService>();
+
+        serviceCollection.Services.RegisterConsumer<TasksActionsConsumer>();
         
         return serviceCollection;
     }

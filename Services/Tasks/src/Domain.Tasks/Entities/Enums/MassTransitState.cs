@@ -4,5 +4,6 @@ namespace Domain.Tasks.Entities.Enums;
 public enum MassTransitState
 {
     Created = 0,
-    Processed = 1,
+    Processing = 1,
+    Processed = 2,
 }

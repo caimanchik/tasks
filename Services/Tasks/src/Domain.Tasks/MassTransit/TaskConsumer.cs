@@ -1,4 +1,3 @@
-using Domain.Tasks.Abstracts;
 using Domain.Tasks.Abstracts.Existing;
 using Domain.Tasks.Extensions;
 using Domain.Tasks.MassTransit.Entities;
@@ -15,6 +14,8 @@ public abstract class CustomConsumer<TArtefacts, TCondition, TResult>(IPublishEn
         var source = context.Message;
         TArtefacts artefacts = default!;
 
+        await publishEndpoint.Publish(source.ToProcessing());
+
         try
         {
             var result = await DoWork(source.TaskArtefacts.Condition);
@@ -26,7 +27,7 @@ public abstract class CustomConsumer<TArtefacts, TCondition, TResult>(IPublishEn
         }
         finally
         {
-            var processedTask = source.ToProcessed(artefacts!);
+            var processedTask = source.ToProcessed(artefacts);
             await publishEndpoint.Publish(processedTask);
         }
     }
