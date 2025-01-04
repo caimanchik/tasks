@@ -22,11 +22,12 @@ public static class TaskEndpoints
 
         group
             .MapGet("", GetTasks)
-            .WithSummary("Получить задачу по id")
+            .WithSummary("Получить все задачи пользователя")
             .RequireAuthorization();
+        
         group
             .MapGet("/{taskId:guid}", GetTask)
-            .WithSummary("Получить все задачи пользователя")
+            .WithSummary("Получить задачу по id")
             .RequireAuthorization();
 
         group

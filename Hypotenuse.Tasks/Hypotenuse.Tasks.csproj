@@ -7,10 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Properties\launchSettings.json" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Host\ServiceDefaults\ServiceDefaults.csproj" />
       <ProjectReference Include="..\Services\Tasks\src\Domain.Tasks\Domain.Tasks.csproj" />
     </ItemGroup>

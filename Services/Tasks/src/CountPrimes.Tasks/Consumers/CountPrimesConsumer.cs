@@ -4,8 +4,8 @@ using MassTransit;
 
 namespace CountPrimes.Tasks.Consumers;
 
-public class CountPrimesConsumer(IPublishEndpoint publishEndpoint)
-    : CustomConsumer<CountPrimesTaskArtefacts, int, int>(publishEndpoint)
+public class CountPrimesConsumer(IPublishEndpoint publishEndpoint, ILogger<CountPrimesConsumer> logger)
+    : CustomConsumer<CountPrimesTaskArtefacts, int, int>(publishEndpoint, logger)
 {
     protected override Task<int> DoWork(int number)
     {

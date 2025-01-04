@@ -4,8 +4,8 @@ using MassTransit;
 
 namespace Hypotenuse.Tasks.Consumers;
 
-public class HypotenuseConsumers(IPublishEndpoint publishEndpoint)
-    : CustomConsumer<HypotenuseTaskArtefacts, HypotenuseTaskCondition, double>(publishEndpoint)
+public class HypotenuseConsumer(IPublishEndpoint publishEndpoint, ILogger<HypotenuseConsumer> logger)
+    : CustomConsumer<HypotenuseTaskArtefacts, HypotenuseTaskCondition, double>(publishEndpoint, logger)
 {
     protected override Task<double> DoWork(HypotenuseTaskCondition condition)
     {
