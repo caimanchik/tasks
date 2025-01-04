@@ -2,6 +2,7 @@ using Domain.Tasks.Entities;
 using Domain.Tasks.Entities.CountPrimes;
 using Domain.Tasks.Entities.Factorial;
 using Domain.Tasks.Entities.Hypotenuse;
+using Domain.Tasks.Entities.Palindrome;
 using Domain.Tasks.Entities.SumOfDigits;
 using Riok.Mapperly.Abstractions;
 
@@ -21,4 +22,7 @@ public static partial class TaskEntityMappings
     
     [MapperIgnoreTarget(nameof(SumOfDigitsTaskEntity.Artefacts))]
     public static partial SumOfDigitsTaskEntity ToSumOfDigits(this TaskEntity taskEntity);
+
+    [MapperIgnoreTarget(nameof(PalindromeTaskEntity.Artefacts))]
+    public static partial PalindromeTaskEntity ToPalindrome(this TaskEntity taskEntity);
 }

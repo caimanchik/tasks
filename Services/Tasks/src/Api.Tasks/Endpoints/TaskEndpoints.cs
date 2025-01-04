@@ -2,6 +2,7 @@ using Api.Tasks.ApiModels;
 using Api.Tasks.ApiModels.TaskEntities.Create.CountPrimes;
 using Api.Tasks.ApiModels.TaskEntities.Create.Factorial;
 using Api.Tasks.ApiModels.TaskEntities.Create.Hypotenuse;
+using Api.Tasks.ApiModels.TaskEntities.Create.Palindrome;
 using Api.Tasks.ApiModels.TaskEntities.Create.SumOfDigits;
 using Api.Tasks.Mappings;
 using Core.Extensions;
@@ -50,6 +51,11 @@ public static class TaskEndpoints
             .WithSummary("Создать задачу подсчета суммы цифр числа")
             .RequireAuthorization();
         
+        group
+            .MapPost("/palindrome", CreatePalindromeTask)
+            .WithSummary("Создать задачу, является ли текст палиндромом")
+            .RequireAuthorization();
+        
         return builder;
     }
 
@@ -58,11 +64,11 @@ public static class TaskEndpoints
         HttpContext context,
         ITaskService taskService,
         IArtefactsResolver artefactsResolver,
-        CancellationToken cancellationToken)
+        CancellationToken ct)
     {
         var userId = context.TryGetUserId()!;
         
-        var task = await taskService.GetTaskByIdAsync(userId.Value, taskId, cancellationToken);
+        var task = await taskService.GetTaskByIdAsync(userId.Value, taskId, ct);
         if (task is null)
             return TypedResults.NotFound();
 
@@ -73,11 +79,11 @@ public static class TaskEndpoints
         HttpContext context,
         ITaskService taskService,
         IArtefactsResolver artefactsResolver,
-        CancellationToken cancellationToken)
+        CancellationToken ct)
     {
         var userId = context.TryGetUserId()!;
-
-        var tasks = await taskService.GetAllTasksAsync(userId.Value, cancellationToken);
+        var tasks = await taskService.GetAllTasksAsync(userId.Value, ct);
+        
         return TypedResults.Ok(tasks.ToContract(artefactsResolver));
     }
 
@@ -130,6 +136,19 @@ public static class TaskEndpoints
         var userId = context.TryGetUserId()!;
         var domainTask = task.ToDomain();
         
+        return await TryCreateTask(taskService, userId.Value, domainTask, artefactsResolver, ct);
+    }
+    
+    private static async Task<Results<Ok<TaskDto>, ProblemHttpResult>> CreatePalindromeTask(
+        [FromBody] PalindromeTaskCreateDto task,
+        HttpContext context,
+        ITaskService taskService,
+        IArtefactsResolver artefactsResolver,
+        CancellationToken ct)
+    {
+        var userId = context.TryGetUserId()!;
+        var domainTask = task.ToDomain();
+
         return await TryCreateTask(taskService, userId.Value, domainTask, artefactsResolver, ct);
     }
 

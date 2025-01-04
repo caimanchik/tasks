@@ -5,6 +5,7 @@ using Domain.Tasks.Entities.CountPrimes;
 using Domain.Tasks.Entities.Enums;
 using Domain.Tasks.Entities.Factorial;
 using Domain.Tasks.Entities.Hypotenuse;
+using Domain.Tasks.Entities.Palindrome;
 using Domain.Tasks.Entities.SumOfDigits;
 using Domain.Tasks.Interfaces.Repositories;
 using Domain.Tasks.Interfaces.Services;
@@ -45,6 +46,7 @@ public class TaskService(
             FactorialTaskCreate factorialTaskCreate => new FactorialTaskArtefacts { Condition = factorialTaskCreate.Artefacts.Number },
             CountPrimesTaskCreate countPrimesTaskCreate => new CountPrimesTaskArtefacts { Condition = countPrimesTaskCreate.Artefacts.Number },
             SumOfDigitsTaskCreate sumOfDigitsTaskCreate => new SumOfDigitsTaskArtefacts { Condition = sumOfDigitsTaskCreate.Artefacts.Number },
+            PalindromeTaskCreate palindromeTaskCreate => new PalindromeTaskArtefacts { Condition = palindromeTaskCreate.Artefacts.Text },
             _ => null,
         };
         
@@ -101,6 +103,7 @@ public class TaskService(
             TaskType.Hypotenuse => (taskEntity.ToHypotenuse(), artefacts ?? taskEntity.GetArtefacts<HypotenuseTaskArtefacts>(resolver)),
             TaskType.CountPrimes => (taskEntity.ToCountPrime(), artefacts ?? taskEntity.GetArtefacts<CountPrimesTaskArtefacts>(resolver)),
             TaskType.SumOfDigits => (taskEntity.ToSumOfDigits(), artefacts ?? taskEntity.GetArtefacts<SumOfDigitsTaskArtefacts>(resolver)),
+            TaskType.Palindrome => (taskEntity.ToPalindrome(), artefacts ?? taskEntity.GetArtefacts<PalindromeTaskArtefacts>(resolver)),
             _ => null,
         };
 
@@ -132,6 +135,11 @@ public class TaskService(
             case SumOfDigitsTaskArtefacts sumOfDigitsTaskArtefacts:
             {
                 await PublishTask(sumOfDigitsTaskArtefacts, createdEntity, ct);
+                break;
+            }
+            case PalindromeTaskArtefacts palindromeTaskArtefacts:
+            {
+                await PublishTask(palindromeTaskArtefacts, createdEntity, ct);
                 break;
             }
         }
