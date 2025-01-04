@@ -7,4 +7,6 @@ public enum TaskTypeDto
     CountPrimes = 2,
     SumOfDigits = 3,
     Palindrome = 4,
+    Fibonacci = 5,
+    GCD = 6,
 }
