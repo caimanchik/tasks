@@ -1,0 +1,55 @@
+{
+  "projectPath": ".",
+  "inputPath": "aspirate-output",
+  "outputPath": "aspirate-output",
+  "containerImageTags": [
+    "latest"
+  ],
+  "imagePullPolicy": "IfNotPresent",
+  "containerBuilder": "docker",
+  "kubeContext": "minikube",
+  "outputFormat": "kustomize",
+  "skipFinalKustomizeGeneration": false,
+  "privateRegistryEmail": "aspir8@aka.ms",
+  "includeDashboard": true,
+  "useCustomNamespace": false,
+  "secrets": {
+    "salt": "GD9hDOzkpHS\u002BDtqs",
+    "hash": "EU77ZIIluFkCxo6LGV/F3uuMgMH9P9HT1MVNrfiwr1Q=",
+    "secrets": {
+      "username": {
+        "value": "GD9hDOzkpHS\u002BDtqsLDhn4Javfgp2iSWeth6I5zaiI34="
+      },
+      "password": {
+        "value": "GD9hDOzkpHS\u002BDtqs0zTynMAokU5Aiy\u002BNXcykgzSsP3nVIA=="
+      },
+      "rabbitMq": {},
+      "keycloak": {},
+      "postgres": {
+        "POSTGRES_PASSWORD": "GD9hDOzkpHS\u002BDtqs0zTynMAokU5Aiy\u002BNXcykgzSsP3nVIA=="
+      },
+      "tasks": {},
+      "apiTasks": {
+        "ConnectionStrings__rabbitMq": "GD9hDOzkpHS\u002BDtqsnzoNb\u002BMCQiR0WANACZ4pQSWgPXqYa0XznT1ydKyIuvnhZAw1M\u002BDV3l3Wbae5qnZ7",
+        "ConnectionStrings__postgres": "GD9hDOzkpHS\u002BDtqsrOyCMJEvU4MC/0HqmWL1nAyiP36fNAXyhjV0K6/SmeXkdHFyZrGFjHzoee/i/SwshDFf6OSSoZEvLBMXwO7OfNYQl4LR",
+        "ConnectionStrings__tasks": "GD9hDOzkpHS\u002BDtqsuOcQb1gQNVkaVg5HC2qg0QyiP36fNAXyhjV0K6/SmeXkdHFyZrGFjHzoee/i/SwshDFf6OSSoZEvLBMXwO7OfNYQl4LR1M5JadGkrEAddph5WNhu"
+      },
+      "factorialTask": {
+        "ConnectionStrings__rabbitMq": "GD9hDOzkpHS\u002BDtqsnzoNb\u002BMCQiR0WANACZ4pQSWgPXqYa0XznT1ydKyIuvnhZAw1M\u002BDV3l3Wbae5qnZ7"
+      },
+      "hypotenuseTask": {
+        "ConnectionStrings__rabbitMq": "GD9hDOzkpHS\u002BDtqsnzoNb\u002BMCQiR0WANACZ4pQSWgPXqYa0XznT1ydKyIuvnhZAw1M\u002BDV3l3Wbae5qnZ7"
+      },
+      "countPrimesTask": {
+        "ConnectionStrings__rabbitMq": "GD9hDOzkpHS\u002BDtqsnzoNb\u002BMCQiR0WANACZ4pQSWgPXqYa0XznT1ydKyIuvnhZAw1M\u002BDV3l3Wbae5qnZ7"
+      },
+      "sumOfDigitsTask": {
+        "ConnectionStrings__rabbitMq": "GD9hDOzkpHS\u002BDtqsnzoNb\u002BMCQiR0WANACZ4pQSWgPXqYa0XznT1ydKyIuvnhZAw1M\u002BDV3l3Wbae5qnZ7"
+      },
+      "palindromeTask": {
+        "ConnectionStrings__rabbitMq": "GD9hDOzkpHS\u002BDtqsnzoNb\u002BMCQiR0WANACZ4pQSWgPXqYa0XznT1ydKyIuvnhZAw1M\u002BDV3l3Wbae5qnZ7"
+      }
+    }
+  },
+  "processAllComponents": true
+}

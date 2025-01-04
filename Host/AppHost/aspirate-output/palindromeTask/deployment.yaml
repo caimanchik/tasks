@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: palindrometask
+  labels:
+    app: palindrometask
+spec:
+  minReadySeconds: 60
+  replicas: 1
+  selector:
+    matchLabels:
+      app: palindrometask
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: palindrometask
+    spec:
+      containers:
+      - name: palindrometask
+        image: palindrometask:latest
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+            name: palindrometask-env
+        - secretRef:
+            name: palindrometask-secrets
+      terminationGracePeriodSeconds: 180

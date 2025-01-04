@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hypotenusetask
+  labels:
+    app: hypotenusetask
+spec:
+  minReadySeconds: 60
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hypotenusetask
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: hypotenusetask
+    spec:
+      containers:
+      - name: hypotenusetask
+        image: hypotenusetask:latest
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+            name: hypotenusetask-env
+        - secretRef:
+            name: hypotenusetask-secrets
+      terminationGracePeriodSeconds: 180

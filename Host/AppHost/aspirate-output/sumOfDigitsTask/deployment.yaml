@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sumofdigitstask
+  labels:
+    app: sumofdigitstask
+spec:
+  minReadySeconds: 60
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sumofdigitstask
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: sumofdigitstask
+    spec:
+      containers:
+      - name: sumofdigitstask
+        image: sumofdigitstask:latest
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+            name: sumofdigitstask-env
+        - secretRef:
+            name: sumofdigitstask-secrets
+      terminationGracePeriodSeconds: 180

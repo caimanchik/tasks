@@ -1,0 +1,16 @@
+resources:
+- rabbitMq
+- keycloak
+- postgres
+- apiTasks
+- factorialTask
+- hypotenuseTask
+- countPrimesTask
+- sumOfDigitsTask
+- palindromeTask
+- dashboard.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+

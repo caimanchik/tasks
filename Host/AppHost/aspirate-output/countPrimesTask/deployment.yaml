@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: countprimestask
+  labels:
+    app: countprimestask
+spec:
+  minReadySeconds: 60
+  replicas: 1
+  selector:
+    matchLabels:
+      app: countprimestask
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: countprimestask
+    spec:
+      containers:
+      - name: countprimestask
+        image: countprimestask:latest
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+            name: countprimestask-env
+        - secretRef:
+            name: countprimestask-secrets
+      terminationGracePeriodSeconds: 180

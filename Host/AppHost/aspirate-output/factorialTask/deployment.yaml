@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: factorialtask
+  labels:
+    app: factorialtask
+spec:
+  minReadySeconds: 60
+  replicas: 1
+  selector:
+    matchLabels:
+      app: factorialtask
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: factorialtask
+    spec:
+      containers:
+      - name: factorialtask
+        image: factorialtask:latest
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+            name: factorialtask-env
+        - secretRef:
+            name: factorialtask-secrets
+      terminationGracePeriodSeconds: 180
