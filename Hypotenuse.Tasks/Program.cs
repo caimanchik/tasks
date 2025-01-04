@@ -13,5 +13,5 @@ builder.Services
 
 var host = builder.Build();
 var logger = host.Services.GetRequiredService<ILogger<Program>>();
-logger.LogInformation("Application starting...");
+logger.LogInformation("Consumer {ConsumerName} starting...", typeof(Program).Assembly.FullName);
 await host.RunAsync();

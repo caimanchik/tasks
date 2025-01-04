@@ -4,8 +4,8 @@ using MassTransit;
 
 namespace Factorial.Tasks.Consumers;
 
-public class FactorialConsumer(IPublishEndpoint publishEndpoint) 
-    : CustomConsumer<FactorialTaskArtefacts, int, long>(publishEndpoint)
+public class FactorialConsumer(IPublishEndpoint publishEndpoint, ILogger<FactorialConsumer> logger) 
+    : CustomConsumer<FactorialTaskArtefacts, int, long>(publishEndpoint, logger)
 {
     protected override Task<long> DoWork(int condition)
     {

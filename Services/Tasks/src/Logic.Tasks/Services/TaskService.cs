@@ -13,7 +13,6 @@ using Logic.Tasks.Mappings;
 using MassTransit;
 using Microsoft.Extensions.Logging;
 
-
 namespace Logic.Tasks.Services;
 
 public class TaskService(
@@ -21,7 +20,7 @@ public class TaskService(
     IArtefactsResolver resolver,
     IPublishEndpoint publishEndpoint,
     ILogger<TaskService> logger)
-    : Publisher(publishEndpoint), ITaskService
+    : Publisher(publishEndpoint, logger), ITaskService
 { 
     public async Task<TaskEntityBase?> GetTaskByIdAsync(Guid userId, Guid taskId, CancellationToken ct)
     {
@@ -50,7 +49,10 @@ public class TaskService(
         };
         
         if (artefacts is null)
-            throw new ArgumentException($"Type {taskToCreate.GetType().FullName} is not supported", nameof(taskToCreate));
+        {
+            logger.LogError("Type {TaskType} is not supported", taskToCreate.GetType().FullName);
+            return null;
+        }
 
         var task = new TaskEntity(taskToCreate.Name, taskToCreate.Description, userId, DateTime.UtcNow,
             resolver.Serialize(artefacts), taskToCreate.TaskType);
@@ -58,6 +60,8 @@ public class TaskService(
         task.TrySetState(TaskState.WaitingToStart, userId);
         var createdEntity = await taskRepository.AddAsync(task, ct);
         await taskRepository.UnitOfWork.SaveChangesAsync(ct);
+        
+        logger.LogInformation("Task {TaskId} {TaskType} was created", createdEntity.Id, createdEntity.TaskType);
 
         await PublishTaskAbstract(artefacts, createdEntity, ct);
         return GetContractTask(createdEntity, artefacts);

@@ -4,8 +4,8 @@ using MassTransit;
 
 namespace SumOfDigits.Tasks.Consumers;
 
-public class SumOfDigitsConsumers(IPublishEndpoint publishEndpoint)
-    : CustomConsumer<SumOfDigitsTaskArtefacts, int, int>(publishEndpoint)
+public class SumOfDigitsConsumer(IPublishEndpoint publishEndpoint, ILogger<SumOfDigitsConsumer> logger)
+    : CustomConsumer<SumOfDigitsTaskArtefacts, int, int>(publishEndpoint, logger)
 {
     protected override Task<int> DoWork(int condition)
     {
