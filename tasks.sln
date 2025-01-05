@@ -26,15 +26,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Libs\Core\Core.cspr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Tasks", "Services\Tasks\src\Api.Tasks\Api.Tasks.csproj", "{C2A9731A-6987-4B46-8AE6-EA59C63A15F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Factorial.Tasks", "Factorial.Tasks\Factorial.Tasks.csproj", "{D607F045-0130-4D9D-894A-DED4CE0F1341}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Factorial.Tasks", "Services\Tasks\src\Factorial.Tasks\Factorial.Tasks.csproj", "{D607F045-0130-4D9D-894A-DED4CE0F1341}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hypotenuse.Tasks", "Hypotenuse.Tasks\Hypotenuse.Tasks.csproj", "{18FEC5AC-55A7-4D1C-BD9D-31C4880CD431}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hypotenuse.Tasks", "Services\Tasks\src\Hypotenuse.Tasks\Hypotenuse.Tasks.csproj", "{18FEC5AC-55A7-4D1C-BD9D-31C4880CD431}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountPrimes.Tasks", "Services\Tasks\src\CountPrimes.Tasks\CountPrimes.Tasks.csproj", "{FE85C241-2CB6-416D-99C8-172A029AE600}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SumOfDigits.Tasks", "Services\Tasks\src\SumOfDigits.Tasks\SumOfDigits.Tasks.csproj", "{920D3862-D621-4EF6-A7BC-479CD1815C03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Palindrome.Tasks", "Palindrome.Tasks\Palindrome.Tasks.csproj", "{B09D48A2-5C20-496C-9365-D5C6823DC25D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Palindrome.Tasks", "Services\Tasks\src\Palindrome.Tasks\Palindrome.Tasks.csproj", "{B09D48A2-5C20-496C-9365-D5C6823DC25D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
