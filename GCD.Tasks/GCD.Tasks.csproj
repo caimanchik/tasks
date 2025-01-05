@@ -5,7 +5,6 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>dotnet-GCD-941d53c0-0177-4b12-9d68-20d662ac9218</UserSecretsId>
-        <RootNamespace>GCD</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

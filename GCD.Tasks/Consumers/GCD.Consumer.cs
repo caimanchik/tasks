@@ -3,7 +3,7 @@ using Domain.Tasks.Entities.Hypotenuse;
 using Domain.Tasks.MassTransit;
 using MassTransit;
 
-namespace GCD.Tasks.Consumers;
+namespace GCD.Consumers;
 
 public class GCDConsumer(IPublishEndpoint publishEndpoint, ILogger<GCDConsumer> logger)
     : CustomConsumer<GCDTaskArtefacts, GCDTaskCondition, int>(publishEndpoint, logger)

@@ -59,7 +59,8 @@ public static class TaskEndpoints
 
         group
             .MapPost("/gcd", CreateGCDTasks)
-            .WithSummary("Создать задачу по вычислению наибольшего общего делителя");
+            .WithSummary("Создать задачу по вычислению наибольшего общего делителя")
+            .RequireAuthorization();
         
         return builder;
     }
