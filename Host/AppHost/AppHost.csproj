@@ -17,12 +17,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Factorial.Tasks\Factorial.Tasks.csproj" />
-      <ProjectReference Include="..\..\Hypotenuse.Tasks\Hypotenuse.Tasks.csproj" />
-      <ProjectReference Include="..\..\Palindrome.Tasks\Palindrome.Tasks.csproj" />
       <ProjectReference Include="..\..\Services\Tasks\src\Api.Tasks\Api.Tasks.csproj" />
       <ProjectReference Include="..\..\Services\Tasks\src\CountPrimes.Tasks\CountPrimes.Tasks.csproj" />
       <ProjectReference Include="..\..\Services\Tasks\src\SumOfDigits.Tasks\SumOfDigits.Tasks.csproj" />
+      <ProjectReference Include="..\..\Services\Tasks\src\Factorial.Tasks\Factorial.Tasks.csproj" />
+      <ProjectReference Include="..\..\Services\Tasks\src\Hypotenuse.Tasks\Hypotenuse.Tasks.csproj" />
+      <ProjectReference Include="..\..\Services\Tasks\src\Palindrome.Tasks\Palindrome.Tasks.csproj" />
     </ItemGroup>
 
 </Project>
