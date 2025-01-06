@@ -2,6 +2,8 @@ using System.Text.Json.Serialization;
 using Api.Tasks.ApiModels;
 using Api.Tasks.ApiModels.TaskEntities.Create.CountPrimes;
 using Api.Tasks.ApiModels.TaskEntities.Create.Factorial;
+using Api.Tasks.ApiModels.TaskEntities.Create.Fibonacci;
+using Api.Tasks.ApiModels.TaskEntities.Create.GCD;
 using Api.Tasks.ApiModels.TaskEntities.Create.Hypotenuse;
 using Api.Tasks.ApiModels.TaskEntities.Create.Palindrome;
 using Api.Tasks.ApiModels.TaskEntities.Create.SumOfDigits;
@@ -19,5 +21,7 @@ namespace Api.Tasks;
 [JsonSerializable(typeof(CountPrimesTaskCreateDto))]
 [JsonSerializable(typeof(SumOfDigitsTaskCreateDto))]
 [JsonSerializable(typeof(PalindromeTaskCreateDto))]
+[JsonSerializable(typeof(FibonacciTaskCreateDto))]
+[JsonSerializable(typeof(GCDTaskCreateDto))]
 
 internal partial class ApiJsonContext : JsonSerializerContext;

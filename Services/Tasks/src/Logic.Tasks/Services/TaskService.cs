@@ -4,6 +4,8 @@ using Domain.Tasks.Entities;
 using Domain.Tasks.Entities.CountPrimes;
 using Domain.Tasks.Entities.Enums;
 using Domain.Tasks.Entities.Factorial;
+using Domain.Tasks.Entities.Fibonacci;
+using Domain.Tasks.Entities.GCD;
 using Domain.Tasks.Entities.Hypotenuse;
 using Domain.Tasks.Entities.Palindrome;
 using Domain.Tasks.Entities.SumOfDigits;
@@ -47,6 +49,8 @@ public class TaskService(
             CountPrimesTaskCreate countPrimesTaskCreate => new CountPrimesTaskArtefacts { Condition = countPrimesTaskCreate.Artefacts.Number },
             SumOfDigitsTaskCreate sumOfDigitsTaskCreate => new SumOfDigitsTaskArtefacts { Condition = sumOfDigitsTaskCreate.Artefacts.Number },
             PalindromeTaskCreate palindromeTaskCreate => new PalindromeTaskArtefacts { Condition = palindromeTaskCreate.Artefacts.Text },
+            FibonacciTaskCreate fibonacciTaskCreate => new FibonacciTaskArtefacts { Condition = fibonacciTaskCreate.Artefacts.Number },
+            GCDTaskCreate gcdTaskCreate => new GCDTaskArtefacts() { Condition = gcdTaskCreate.Artefacts.ToDomain() },
             _ => null,
         };
         
@@ -104,6 +108,8 @@ public class TaskService(
             TaskType.CountPrimes => (taskEntity.ToCountPrime(), artefacts ?? taskEntity.GetArtefacts<CountPrimesTaskArtefacts>(resolver)),
             TaskType.SumOfDigits => (taskEntity.ToSumOfDigits(), artefacts ?? taskEntity.GetArtefacts<SumOfDigitsTaskArtefacts>(resolver)),
             TaskType.Palindrome => (taskEntity.ToPalindrome(), artefacts ?? taskEntity.GetArtefacts<PalindromeTaskArtefacts>(resolver)),
+            TaskType.Fibonacci => (taskEntity.ToFibonacci(), artefacts ?? taskEntity.GetArtefacts<FibonacciTaskArtefacts>(resolver)),
+            TaskType.GCD => (taskEntity.ToGCD(), artefacts ?? taskEntity.GetArtefacts<GCDTaskArtefacts>(resolver)),
             _ => null,
         };
 
@@ -140,6 +146,16 @@ public class TaskService(
             case PalindromeTaskArtefacts palindromeTaskArtefacts:
             {
                 await PublishTask(palindromeTaskArtefacts, createdEntity, ct);
+                break;
+            }
+            case FibonacciTaskArtefacts fibonacciTaskArtefacts:
+            {
+                await PublishTask(fibonacciTaskArtefacts, createdEntity, ct);
+                break;
+            }
+            case GCDTaskArtefacts gcDTaskArtefacts:
+            {
+                await PublishTask(gcDTaskArtefacts, createdEntity, ct);
                 break;
             }
         }
