@@ -36,9 +36,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SumOfDigits.Tasks", "Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Palindrome.Tasks", "Services\Tasks\src\Palindrome.Tasks\Palindrome.Tasks.csproj", "{B09D48A2-5C20-496C-9365-D5C6823DC25D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fibonacci.Tasks", "Fibonacci.Tasks\Fibonacci.Tasks.csproj", "{06691B90-C621-4C7F-A1CC-70B2007DBB44}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fibonacci.Tasks", "Services\Tasks\src\Fibonacci.Tasks\Fibonacci.Tasks.csproj", "{06691B90-C621-4C7F-A1CC-70B2007DBB44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCD.Tasks", "GCD.Tasks\GCD.Tasks.csproj", "{C5252FCA-DD7C-4C46-A265-2B6741E9631F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCD.Tasks", "Services\Tasks\src\GCD.Tasks\GCD.Tasks.csproj", "{C5252FCA-DD7C-4C46-A265-2B6741E9631F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
