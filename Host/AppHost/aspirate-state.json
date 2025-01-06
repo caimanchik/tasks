@@ -48,6 +48,12 @@
       },
       "palindromeTask": {
         "ConnectionStrings__rabbitMq": "GD9hDOzkpHS\u002BDtqsnzoNb\u002BMCQiR0WANACZ4pQSWgPXqYa0XznT1ydKyIuvnhZAw1M\u002BDV3l3Wbae5qnZ7"
+      },
+      "fibonacciTask": {
+        "ConnectionStrings__rabbitMq": "GD9hDOzkpHS\u002BDtqsnzoNb\u002BMCQiR0WANACZ4pQSWgPXqYa0XznT1ydKyIuvnhZAw1M\u002BDV3l3Wbae5qnZ7"
+      },
+      "gcdTask": {
+        "ConnectionStrings__rabbitMq": "GD9hDOzkpHS\u002BDtqsnzoNb\u002BMCQiR0WANACZ4pQSWgPXqYa0XznT1ydKyIuvnhZAw1M\u002BDV3l3Wbae5qnZ7"
       }
     }
   },

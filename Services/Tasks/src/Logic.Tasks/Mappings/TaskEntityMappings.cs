@@ -1,6 +1,8 @@
 using Domain.Tasks.Entities;
 using Domain.Tasks.Entities.CountPrimes;
 using Domain.Tasks.Entities.Factorial;
+using Domain.Tasks.Entities.Fibonacci;
+using Domain.Tasks.Entities.GCD;
 using Domain.Tasks.Entities.Hypotenuse;
 using Domain.Tasks.Entities.Palindrome;
 using Domain.Tasks.Entities.SumOfDigits;
@@ -25,4 +27,10 @@ public static partial class TaskEntityMappings
 
     [MapperIgnoreTarget(nameof(PalindromeTaskEntity.Artefacts))]
     public static partial PalindromeTaskEntity ToPalindrome(this TaskEntity taskEntity);
+    
+    [MapperIgnoreTarget(nameof(FibonacciTaskEntity.Artefacts))]
+    public static partial FibonacciTaskEntity ToFibonacci(this TaskEntity taskEntity);
+    
+    [MapperIgnoreTarget(nameof(GCDTaskEntity.Artefacts))]
+    public static partial GCDTaskEntity ToGCD(this TaskEntity taskEntity);
 }

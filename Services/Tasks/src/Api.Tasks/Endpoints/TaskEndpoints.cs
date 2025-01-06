@@ -1,6 +1,8 @@
 using Api.Tasks.ApiModels;
 using Api.Tasks.ApiModels.TaskEntities.Create.CountPrimes;
 using Api.Tasks.ApiModels.TaskEntities.Create.Factorial;
+using Api.Tasks.ApiModels.TaskEntities.Create.Fibonacci;
+using Api.Tasks.ApiModels.TaskEntities.Create.GCD;
 using Api.Tasks.ApiModels.TaskEntities.Create.Hypotenuse;
 using Api.Tasks.ApiModels.TaskEntities.Create.Palindrome;
 using Api.Tasks.ApiModels.TaskEntities.Create.SumOfDigits;
@@ -54,6 +56,16 @@ public static class TaskEndpoints
         group
             .MapPost("/palindrome", CreatePalindromeTask)
             .WithSummary("Создать задачу, является ли текст палиндромом")
+            .RequireAuthorization();
+        
+        group
+            .MapPost("/fibonacci", CreateFibonacciTask)
+            .WithSummary("Создать задачу по вычислению члена последовательности Фибоначчи")
+            .RequireAuthorization();
+
+        group
+            .MapPost("/gcd", CreateGCDTasks)
+            .WithSummary("Создать задачу по вычислению наибольшего общего делителя")
             .RequireAuthorization();
         
         return builder;
@@ -138,7 +150,7 @@ public static class TaskEndpoints
         
         return await TryCreateTask(taskService, userId.Value, domainTask, artefactsResolver, ct);
     }
-    
+
     private static async Task<Results<Ok<TaskDto>, ProblemHttpResult>> CreatePalindromeTask(
         [FromBody] PalindromeTaskCreateDto task,
         HttpContext context,
@@ -149,6 +161,32 @@ public static class TaskEndpoints
         var userId = context.TryGetUserId()!;
         var domainTask = task.ToDomain();
 
+        return await TryCreateTask(taskService, userId.Value, domainTask, artefactsResolver, ct);
+    }
+
+    private static async Task<Results<Ok<TaskDto>, ProblemHttpResult>> CreateFibonacciTask(
+        [FromBody] FibonacciTaskCreateDto task,
+        HttpContext context,
+        ITaskService taskService,
+        IArtefactsResolver artefactsResolver,
+        CancellationToken ct)
+    {
+        var userId = context.TryGetUserId()!;
+        var domainTask = task.ToDomain();
+        
+        return await TryCreateTask(taskService, userId.Value, domainTask, artefactsResolver, ct);
+    }
+
+    private static async Task<Results<Ok<TaskDto>, ProblemHttpResult>> CreateGCDTasks(
+        [FromBody] GCDTaskCreateDto task,
+        HttpContext context,
+        ITaskService taskService,
+        IArtefactsResolver artefactsResolver,
+        CancellationToken ct)
+    {
+        var userId = context.TryGetUserId()!;
+        var domainTask = task.ToDomain();
+        
         return await TryCreateTask(taskService, userId.Value, domainTask, artefactsResolver, ct);
     }
 

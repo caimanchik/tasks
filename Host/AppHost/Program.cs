@@ -36,4 +36,10 @@ var sumOfDigitsTask = builder.AddProject<Projects.SumOfDigits_Tasks>("sumOfDigit
 var palindromeTask = builder.AddProject<Projects.Palindrome_Tasks>("palindromeTask")
     .WithReference(rabbitMq);
 
+var fibonacciTask = builder.AddProject<Projects.Fibonacci_Tasks>("fibonacciTask")
+    .WithReference(rabbitMq);
+
+var gcdTask = builder.AddProject<Projects.GCD_Tasks>("gcdTask")
+    .WithReference(rabbitMq);
+
 builder.Build().Run();

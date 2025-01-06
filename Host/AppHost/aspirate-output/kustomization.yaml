@@ -8,6 +8,8 @@ resources:
 - countPrimesTask
 - sumOfDigitsTask
 - palindromeTask
+- fibonacciTask
+- gcdTask
 - dashboard.yaml
 
 generatorOptions:

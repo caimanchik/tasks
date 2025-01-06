@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>dotnet-GCD-941d53c0-0177-4b12-9d68-20d662ac9218</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Host\ServiceDefaults\ServiceDefaults.csproj" />
+      <ProjectReference Include="..\Services\Tasks\src\Domain.Tasks\Domain.Tasks.csproj" />
+    </ItemGroup>
+</Project>

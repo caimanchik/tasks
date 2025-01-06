@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gcdtask
+  labels:
+    app: gcdtask
+spec:
+  minReadySeconds: 60
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gcdtask
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: gcdtask
+    spec:
+      containers:
+      - name: gcdtask
+        image: gcdtask:latest
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+            name: gcdtask-env
+        - secretRef:
+            name: gcdtask-secrets
+      terminationGracePeriodSeconds: 180
