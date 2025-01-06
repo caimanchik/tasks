@@ -23,8 +23,8 @@
       <ProjectReference Include="..\..\Services\Tasks\src\Factorial.Tasks\Factorial.Tasks.csproj" />
       <ProjectReference Include="..\..\Services\Tasks\src\Hypotenuse.Tasks\Hypotenuse.Tasks.csproj" />
       <ProjectReference Include="..\..\Services\Tasks\src\Palindrome.Tasks\Palindrome.Tasks.csproj" />
-      <ProjectReference Include="..\..\Services\Tasks\src\Fibonacci.Tasks\Fibonacci.Tasks.csproj" />
-      <ProjectReference Include="..\..\Services\Tasks\src\GCD.Tasks\GCD.Tasks.csproj" />
+      <ProjectReference Include="..\..\Fibonacci.Tasks\Fibonacci.Tasks.csproj" />
+      <ProjectReference Include="..\..\GCD.Tasks\GCD.Tasks.csproj" />
     </ItemGroup>
 
 </Project>

@@ -185,6 +185,26 @@
         "OTEL_DOTNET_EXPERIMENTAL_OTLP_RETRY": "in_memory",
         "ConnectionStrings__rabbitMq": "{rabbitMq.connectionString}"
       }
+    },
+    "fibonacciTask": {
+      "type": "project.v0",
+      "path": "../../Fibonacci.Tasks/Fibonacci.Tasks.csproj",
+      "env": {
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES": "true",
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES": "true",
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_RETRY": "in_memory",
+        "ConnectionStrings__rabbitMq": "{rabbitMq.connectionString}"
+      }
+    },
+    "gcdTask": {
+      "type": "project.v0",
+      "path": "../../GCD.Tasks/GCD.Tasks.csproj",
+      "env": {
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES": "true",
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES": "true",
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_RETRY": "in_memory",
+        "ConnectionStrings__rabbitMq": "{rabbitMq.connectionString}"
+      }
     }
   }
 }

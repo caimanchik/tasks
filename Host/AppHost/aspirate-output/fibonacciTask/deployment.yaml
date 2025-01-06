@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fibonaccitask
+  labels:
+    app: fibonaccitask
+spec:
+  minReadySeconds: 60
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fibonaccitask
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: fibonaccitask
+    spec:
+      containers:
+      - name: fibonaccitask
+        image: fibonaccitask:latest
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+            name: fibonaccitask-env
+        - secretRef:
+            name: fibonaccitask-secrets
+      terminationGracePeriodSeconds: 180
