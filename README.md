@@ -27,3 +27,21 @@ dotnet run https
 <img width="1025" alt="Снимок экрана 2025-01-03 в 09 15 41" src="https://github.com/user-attachments/assets/995c0456-b9d3-4655-9372-944de27a4112" />
 
 6. Указать созданный realm в [настройках](https://github.com/caimanchik/tasks/blob/main/Services/Tasks/src/Api.Tasks/appsettings.json)
+
+# Запуск в Kubernetes с использованием Aspirate
+
+## Шаги для запуска:
+
+1. Убедитесь, что Kubernetes-кластер запущен и настроен (например, через Minikube):
+   ```bash
+    minikube start
+   ```   
+2.	Перейдите в директорию, где находится проект AppHost
+3.	Примените Kubernetes манифесты с помощью утилиты Aspirate:
+```bash
+  aspirate apply
+```
+4.	Убедитесь, что ресурсы успешно развернуты, проверив состояние:
+```bash
+  kubectl get pods -n default
+```
